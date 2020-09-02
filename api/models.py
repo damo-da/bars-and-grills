@@ -5,8 +5,7 @@ from django.contrib.auth import models as auth_models
 
 __all__ = ['User', 'Restaurant', 'Review']
 
-class User(auth_models.User):
-    pass
+User = auth_models.User
 
 # Create your models here.
 class Restaurant(models.Model):
