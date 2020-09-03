@@ -28,7 +28,7 @@ module.exports = {
   rules: {
     'react/jsx-filename-extension': 'off',
     'no-console': 'error',
-    "react/prop-types": ["error", { "ignore": ["navigation"] }],
+    "react/prop-types": ["error", { "ignore": ["navigation", "classes"] }],
     "no-bitwise": ["error", { "allow": ["~"] }],
     "import/prefer-default-export": 'off',
     'react/jsx-props-no-spreading': 'off',
