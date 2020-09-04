@@ -6,13 +6,14 @@ import {
 } from 'react-router-dom';
 import LoginPage from 'pages/Login';
 
-export const Router = () => (
+const Router = () => (
   <BrowserRouter>
     <Switch>
-      <Route path='/login'>
+      <Route path="/login">
         <LoginPage />
       </Route>
     </Switch>
   </BrowserRouter>
 );
 
+export default Router;

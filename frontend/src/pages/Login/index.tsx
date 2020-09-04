@@ -1,13 +1,10 @@
-import React from "react";
-import { LoginSignup } from 'components/LoginSignup/LoginSignup';
+import React from 'react';
+import LoginSignup from 'components/LoginSignup/LoginSignup';
 
-export const LoginPage = () => {
-
-  return (
-    <>
-      <LoginSignup />
-    </>
-  );
-};
+const LoginPage = () => (
+  <>
+    <LoginSignup />
+  </>
+);
 
 export default LoginPage;
