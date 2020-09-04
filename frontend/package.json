@@ -18,6 +18,16 @@
   },
   "devDependencies": {
     "@types/react-router-dom": "^5.1.5",
+    "@typescript-eslint/eslint-plugin": "^4.0.1",
+    "@typescript-eslint/parser": "^4.0.1",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-config-airbnb-typescript": "^9.0.0",
+    "eslint-import-resolver-typescript": "^2.3.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-react": "^7.20.6",
+    "eslint-plugin-react-hooks": "^4.1.0",
     "tslint": "^6.1.3",
     "typescript": "^3.9.7"
   },
@@ -26,7 +36,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "tslint --project ."
+    "lint": "eslint src/**/*.{ts,tsx}"
   },
   "eslintConfig": {
     "extends": "react-app"
