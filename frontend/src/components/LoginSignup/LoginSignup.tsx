@@ -14,7 +14,7 @@ const styles = (theme: any) => ({
   },
   container: {
     background: `url(${barBg})`,
-  }
+  },
 });
 
 type LoginCallback = (params: LoginFormData) => void;
@@ -102,7 +102,7 @@ const LoginSignup = ({
       </Container>
     </Box>
   );
-}
+};
 
 LoginSignup.defaultProps = {
   onForgetPasswordClick: () => null,

@@ -2,7 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from 'components/App/App';
 import * as serviceWorker from 'utils/serviceWorker';
+
+import { initAuthModule } from './utils/auth';
+import { redirectIfNotLoggedIn } from './utils/history';
+
 import './index.scss';
+
+initAuthModule();
+redirectIfNotLoggedIn();
 
 ReactDOM.render(
   <React.StrictMode>

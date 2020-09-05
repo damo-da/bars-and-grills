@@ -3,12 +3,21 @@ import { useHistory } from 'react-router-dom';
 
 import LoginSignup from 'components/LoginSignup/LoginSignup';
 import { LoginFormData } from 'types/login';
+import api from 'utils/api';
+import { setCredentials } from 'utils/auth';
 
 const LoginPage = () => {
   const history = useHistory();
 
-  const handleLogin = ({ username, password }: LoginFormData) => {
-    history.push('/dash');
+  const handleLogin = async ({ username, password }: LoginFormData) => {
+    try {
+      const { data: { token } } = await api.post('/login', { username, password });
+      setCredentials({ jwt: token });
+
+      history.replace('/');
+    } catch (e) {
+      console.error('Logging in failed!.', e);
+    }
   };
 
   const handleSignup = ({ username, password }: LoginFormData) => {

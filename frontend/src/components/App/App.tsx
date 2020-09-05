@@ -4,6 +4,7 @@ import { ThemeProvider } from '@material-ui/core/styles';
 
 import Router from 'components/Router/Router';
 import theme from 'styles/theme';
+import history from 'utils/history';
 
 import './App.scss';
 
@@ -12,7 +13,7 @@ function App() {
     <div className="App">
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Router />
+        <Router history={history} />
       </ThemeProvider>
     </div>
   );
