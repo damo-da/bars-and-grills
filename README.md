@@ -30,6 +30,13 @@ Mockups of the React app are located here: https://app.moqups.com/bjwW5EGshG/vie
 * `/dash` for dashboard (restaurant list)
 * `/restaurant/{id}` for restaurant details (child page)
 
+### Django project setup
+Project was bootstrapped using `django-admin.py`. The following modules
+have been added:
+
+* CORS
+* REST Framework
+
 ### React project Setup
 Project was bootstrapped using create-react-app with its typescript template.
 
@@ -37,6 +44,7 @@ The following packages have been integrated:
 * SCSS
 * TS Lint (executed by `npm run lint`)
 * PropTypes
+* Axios
 
 Source code uses absolute imports for better readability.
 https://medium.com/@ktruong008/absolute-imports-with-create-react-app-4338fbca7e3d
