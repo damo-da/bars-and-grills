@@ -22,8 +22,8 @@ function client(endpoint: string, {body, ...customConfig}: any = {}) {
 
   return fetch(`${process.env.REACT_APP_API_ENDPOINT}${endpoint}`, config)
     .then(async response => {
-      console.log('got response', response);
-      const json = await response.json()
+      const data = await response.text();
+      const json = data ? JSON.parse(data) : {};
       if (response.ok) {
         return {
           headers: response.headers,

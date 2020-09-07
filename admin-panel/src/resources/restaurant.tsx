@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {
-  List, Datagrid, Edit, Create, SimpleForm, DateField, TextField, EditButton, TextInput, DateInput,
+  List, Datagrid, Edit, Create, SimpleForm, TextField, EditButton, TextInput, DeleteButton,
 } from 'react-admin';
 import FastFoodIcon from '@material-ui/icons/Fastfood';
 
@@ -14,6 +14,7 @@ export const RestaurantList = (props: any) => (
       <TextField source="review_count" />
       <TextField source="avg_rating" />
       <EditButton basePath="/restaurants" />
+      <DeleteButton />
     </Datagrid>
   </List>
 );
