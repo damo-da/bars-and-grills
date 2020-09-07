@@ -27,15 +27,18 @@ const LoginPage = () => {
 
       history.replace('/');
     } catch (e) {
+      // eslint-disable-next-line no-console
       console.error('Logging in failed!.', e);
     }
   };
 
-  const handleSignup = ({ username, password }: LoginFormData) => {
+  // eslint-disable-next-line no-unused-vars
+  const handleSignup = async ({ username, password }: LoginFormData) => {
     history.push('/admin');
   };
 
-  const handleForgetPassword = () => {
+  const handleForgetPassword = async () => {
+    // eslint-disable-next-line no-alert
     alert('Please contact administrator to reset your password.');
   };
 

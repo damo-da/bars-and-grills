@@ -1,9 +1,10 @@
 import React from 'react';
 import { Admin, Resource } from 'react-admin';
+import drfProvider from 'ra-data-drf';
+import api from 'admin-panel/utils/api';
 
 import Dashboard from 'admin-panel/components/Dashboard/Dashboard';
 import authProvider from 'admin-panel/utils/auth-provider';
-import restProvider from 'admin-panel/utils/rest-provider';
 
 import {
   RestaurantIcon,
@@ -29,7 +30,7 @@ import './App.css';
 function App() {
   return (
     <Admin
-      dataProvider={restProvider}
+      dataProvider={drfProvider('', api)}
       dashboard={Dashboard}
       authProvider={authProvider}
     >

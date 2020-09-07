@@ -2,8 +2,9 @@ import React from 'react';
 import {
   Paper, withStyles, Grid, TextField, Button, Container, Box,
 } from '@material-ui/core';
+import type { LoginFormData } from 'types/login';
+
 import barBg from 'assets/images/bar-bg.png';
-import { LoginFormData } from 'types/login';
 
 const styles = (theme: any) => ({
   margin: {
@@ -17,16 +18,19 @@ const styles = (theme: any) => ({
   },
 });
 
-type LoginCallback = (params: LoginFormData) => void;
+// TypeScript parsing bug for no-unused-vars.
+// See https://github.com/eslint/typescript-eslint-parser/issues/457
+// eslint-disable-next-line no-unused-vars
+interface LoginSignupCallback { (params: LoginFormData): Promise<void> }
 
 type LoginSignupProps = {
   classes: any,
-  onForgetPasswordClick?: () => void,
-  onLogin: LoginCallback,
-  onSignup: LoginCallback,
+  onForgetPasswordClick: () => Promise<void>,
+  onLogin: LoginSignupCallback,
+  onSignup: LoginSignupCallback,
 }
 
-const LoginSignup = ({
+const LoginSignupComponent = ({
   classes,
   onForgetPasswordClick,
   onLogin,
@@ -104,8 +108,4 @@ const LoginSignup = ({
   );
 };
 
-LoginSignup.defaultProps = {
-  onForgetPasswordClick: () => null,
-};
-
-export default withStyles(styles)(LoginSignup);
+export default withStyles(styles)(LoginSignupComponent);

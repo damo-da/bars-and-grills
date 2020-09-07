@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {
-  List, Datagrid, Edit, Create, SimpleForm, TextField, NumberField, EditButton, TextInput, DeleteButton,
+  List, Datagrid, Edit, Create, SimpleForm, TextField, EditButton, TextInput, DeleteButton,
   ReferenceField,
 } from 'react-admin';
 import UserIcon from '@material-ui/icons/VerifiedUser';

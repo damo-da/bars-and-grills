@@ -15,6 +15,7 @@
     "axios": "^0.20.0",
     "history": "^4.10.1",
     "node-sass": "^4.14.1",
+    "ra-data-drf": "^2.0.0",
     "react": "^16.13.1",
     "react-admin": "^3.8.3",
     "react-dom": "^16.13.1",
@@ -41,8 +42,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint src/**/*.{ts,tsx}",
-    "lint:fix": "eslint src/**/*.{ts,tsx} --fix"
+    "lint": "eslint 'src/**/*.{ts,tsx}'",
+    "lint:fix": "eslint 'src/**/*.{ts,tsx}' --fix"
   },
   "eslintConfig": {
     "extends": "react-app"

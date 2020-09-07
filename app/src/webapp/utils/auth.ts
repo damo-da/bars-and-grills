@@ -1,7 +1,6 @@
-import history from 'utils/history';
-
 import type { Credentials } from 'types/credentials';
-import { setApiToken } from './api';
+import history from 'utils/history';
+import { setApiToken } from 'webapp/utils/api';
 
 export const loadToken = () => {
   setApiToken(window.localStorage.getItem('jwt'));

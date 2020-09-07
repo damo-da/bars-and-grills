@@ -40,6 +40,6 @@ const DashboardComponent = ({ restaurants }: DashboardProps) => {
       </Container>
     </>
   );
-}
+};
 
 export default DashboardComponent;

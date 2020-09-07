@@ -1,6 +1,6 @@
-import api from './api';
+import type { LoginFormData } from 'types/login';
 import localStorageProvider from 'utils/localstorage-provider';
-import { LoginFormData } from 'types/login';
+import api from 'admin-panel/utils/api';
 
 export default {
   login: async ({ username, password }: LoginFormData) => {

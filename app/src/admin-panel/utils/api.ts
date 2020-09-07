@@ -1,4 +1,3 @@
-import { fetchUtils } from 'react-admin';
 import localStorageProvider from 'utils/localstorage-provider';
 
 function client(endpoint: string, { body, ...customConfig }: any = {}) {
@@ -19,8 +18,6 @@ function client(endpoint: string, { body, ...customConfig }: any = {}) {
   if (body) {
     config.body = body;
   }
-
-  console.log("making request", config, endpoint)
 
   return fetch(`${process.env.REACT_APP_API_ENDPOINT}${endpoint}`, config)
     .then(async (response) => {

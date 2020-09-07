@@ -27,8 +27,9 @@ const RestaurantItemComponent = ({ name }: Restaurant) => {
   const cardClicked = (e: React.MouseEvent) => {
     e.preventDefault();
 
+    // eslint-disable-next-line no-console
     console.log('card clicked');
-  }
+  };
 
   return (
     <Card className={classes.root} variant="outlined" onClick={cardClicked}>
