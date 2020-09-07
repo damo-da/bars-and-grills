@@ -22,7 +22,9 @@ class ReviewSerializer(serializers.HyperlinkedModelSerializer):
 
 class RestaurantSerializer(serializers.HyperlinkedModelSerializer):
     reviews = ReviewSerializer(many=True, read_only=True)
+    review_count = serializers.IntegerField(read_only=True)
+    avg_rating = serializers.FloatField(read_only=True)
 
     class Meta:
         model = Restaurant
-        fields = ['url', 'id', 'name', 'reviews']
+        fields = ['url', 'id', 'name', 'reviews', 'review_count', 'avg_rating']

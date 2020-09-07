@@ -1,3 +1,4 @@
+from django.db.models import Count, Avg
 from django.http import HttpResponse
 from django.contrib.auth.models import User
 from rest_framework import viewsets
@@ -11,8 +12,12 @@ class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
 
 class RestaurantViewSet(viewsets.ModelViewSet):
-    queryset = Restaurant.objects.all()
+    queryset = Restaurant.objects.annotate(
+            review_count=Count('reviews'),
+            avg_rating=Avg('reviews__rating'),
+        )
     serializer_class = RestaurantSerializer
+
 
 class ReviewViewSet(viewsets.ModelViewSet):
     queryset = Review.objects.all()

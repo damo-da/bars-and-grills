@@ -1,6 +1,8 @@
 asgiref==3.2.10
 Django==3.1.1
+django-cors-headers==3.5.0
 djangorestframework==3.11.1
+djangorestframework-jwt==1.11.0
+PyJWT==1.7.1
 pytz==2020.1
 sqlparse==0.3.1
-djangorestframework-jwt~=1.11.0

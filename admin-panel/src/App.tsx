@@ -1,11 +1,9 @@
 import React from 'react';
-import { Admin, Resource, ListGuesser } from 'react-admin';
-import restProvider from 'ra-data-simple-rest';
+import { Admin, Resource } from 'react-admin';
 import drfProvider from 'ra-data-drf';
 
 import Dashboard from './Dashboard';
-import authProvider from './auth-provider';
-import LoginComponent from "./components/Login/Login";
+import authProvider from './common/utils/auth-provider';
 
 import {
   RestaurantIcon,
@@ -15,16 +13,14 @@ import {
 } from './resources/restaurant';
 
 import './App.css';
-
-const dataProvider1 = restProvider('http://localhost:3000');
-const dataProvider = drfProvider('http://localhost:8000/api');
-
+import restProvider from './common/utils/rest-provider';
 
 function App() {
   return (
     <Admin
-      dataProvider={dataProvider}
+      dataProvider={restProvider}
       dashboard={Dashboard}
+      authProvider={authProvider}
     >
       <Resource
         name="restaurants"

@@ -1,0 +1,1 @@
+# Common TypeScript module
