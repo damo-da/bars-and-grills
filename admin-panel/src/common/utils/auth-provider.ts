@@ -1,12 +1,12 @@
 import api from './api';
 import localStorageProvider from './localstorage-provider';
-import {LoginFormData} from "../types/login";
+import { LoginFormData } from '../types/login';
 
 export default {
   login: async ({ username, password }: LoginFormData) => {
-    const { json: { token: jwt, roles }} = await api( '/login',{
+    const { json: { token: jwt, roles } } = await api('/login', {
       method: 'POST',
-      body: {username, password}
+      body: JSON.stringify({ username, password }),
     });
 
     localStorageProvider.setJwt(jwt);
