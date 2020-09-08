@@ -16,6 +16,9 @@ class Restaurant(models.Model):
         return self.name
 
 class Review(models.Model):
+    class Meta:
+        unique_together = (('user', 'restaurant'),)
+
     RATING_CHOICES = ((1, 1), (2, 2), (3, 3), (4, 4), (5, 5))
 
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, related_name='reviews')

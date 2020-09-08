@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {
   List, Datagrid, Edit, Create, SimpleForm, TextField, EditButton, TextInput, DeleteButton,
-  ReferenceField,
+  ReferenceField, ReferenceInput, SelectInput, NumberInput,
 } from 'react-admin';
 import UserIcon from '@material-ui/icons/VerifiedUser';
 
@@ -50,7 +50,16 @@ export const ReviewEdit = (props: any) => (
   <Edit title={<ReviewTitle />} {...props}>
     <SimpleForm>
       <TextInput disabled source="id" />
-      <TextInput source="name" />
+      <TextInput source="comment" />
+      <NumberInput source="rating" min={1} max={5} />
+
+      <ReferenceInput label="Restaurant" source="restaurant_id" reference="restaurants">
+        <SelectInput optionText="name" />
+      </ReferenceInput>
+      <ReferenceInput label="User" source="user_id" reference="users">
+        <SelectInput optionText="username" />
+      </ReferenceInput>
+
     </SimpleForm>
   </Edit>
 );
@@ -58,7 +67,14 @@ export const ReviewEdit = (props: any) => (
 export const ReviewCreate = (props: any) => (
   <Create title="Add new Review" {...props}>
     <SimpleForm>
-      <TextInput source="name" />
+      <TextInput source="comment" />
+      <NumberInput source="rating" min={1} max={5} />
+      <ReferenceInput label="Restaurant" source="restaurant_id" reference="restaurants">
+        <SelectInput optionText="name" />
+      </ReferenceInput>
+      <ReferenceInput label="User" source="user_id" reference="users">
+        <SelectInput optionText="username" />
+      </ReferenceInput>
     </SimpleForm>
   </Create>
 );

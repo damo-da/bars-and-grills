@@ -13,12 +13,14 @@ class ReviewRestaurantSerializer(serializers.ModelSerializer):
         fields = ['url', 'id', 'name']
 
 class ReviewSerializer(serializers.ModelSerializer):
-    restaurant = ReviewRestaurantSerializer()
+    restaurant = ReviewRestaurantSerializer(read_only=True)
     user = ReviewUserSerializer(read_only=True)
+    user_id = serializers.IntegerField()
+    restaurant_id = serializers.IntegerField()
 
     class Meta:
         model = Review
-        fields = ['url', 'id', 'comment', 'rating', 'restaurant', 'user']
+        fields = ['url', 'id', 'comment', 'rating', 'restaurant', 'user', 'restaurant_id', 'user_id']
 
 class ReviewViewSet(viewsets.ModelViewSet):
     queryset = Review.objects.all()
