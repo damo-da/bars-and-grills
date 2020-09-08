@@ -35,13 +35,18 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const RestaurantItemComponent = ({ name, background_image_url, avg_rating }: Restaurant) => {
+type RestaurantItemProps = {
+  restaurant: Restaurant,
+  onClick: Function,
+};
+
+const RestaurantItemComponent = ({ restaurant, onClick }: RestaurantItemProps) => {
+  const { name, background_image_url, avg_rating }: Restaurant = restaurant;
   const classes = useStyles();
   const cardClicked = (e: React.MouseEvent) => {
     e.preventDefault();
 
-    // eslint-disable-next-line no-console
-    console.log('card clicked');
+    onClick(restaurant);
   };
 
   return (
