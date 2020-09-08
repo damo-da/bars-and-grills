@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import {
   Dialog, useMediaQuery, useTheme, DialogTitle, Container, AppBar,
-  makeStyles, Theme, createStyles, IconButton, Typography, Button, Toolbar,
+  makeStyles, Theme, createStyles, IconButton, Typography, Toolbar,
 } from '@material-ui/core';
 import { Close as CloseIcon } from '@material-ui/icons';
 

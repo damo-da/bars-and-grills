@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Paper, withStyles, Grid, TextField, Button, Container, Box,
+  Paper, withStyles, Grid, TextField, Button,
 } from '@material-ui/core';
 import type { LoginFormData } from 'types/login';
 
