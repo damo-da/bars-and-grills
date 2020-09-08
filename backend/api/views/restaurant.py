@@ -1,7 +1,9 @@
 from django.contrib.auth.models import User
 from django.db.models import Count, Avg
 from rest_framework import serializers, viewsets
+from rest_condition import Or
 
+from api.permissions import AllUserRead, AdminUserWrite
 from api.models import Restaurant, Review
 
 class RestaurantUserSerializer(serializers.ModelSerializer):
@@ -31,5 +33,6 @@ class RestaurantViewSet(viewsets.ModelViewSet):
             avg_rating=Avg('reviews__rating'),
         )
     serializer_class = RestaurantSerializer
+    permission_classes = [Or(AllUserRead, AdminUserWrite)]
 
 

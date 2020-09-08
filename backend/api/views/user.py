@@ -1,5 +1,8 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets, serializers
+from rest_condition import Or
+
+from api.permissions import AdminUserRead, AdminUserWrite
 
 class GroupSerializer(serializers.ModelSerializer):
     class Meta:
@@ -19,7 +22,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
             id=self.data.get('id', None),
             username=self.validated_data['username'],
         )
-        
+
         user.set_password(self.validated_data['password'])
         user.save()
         return user
@@ -27,3 +30,5 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+
+    permission_classes = [Or(AdminUserRead, AdminUserWrite)]

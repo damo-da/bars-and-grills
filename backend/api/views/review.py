@@ -1,6 +1,9 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers, viewsets
 from api.models import Restaurant, Review
+from rest_condition import Or
+
+from api.permissions import AllUserRead, AllUserWrite
 
 class ReviewUserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -25,3 +28,5 @@ class ReviewSerializer(serializers.ModelSerializer):
 class ReviewViewSet(viewsets.ModelViewSet):
     queryset = Review.objects.all()
     serializer_class = ReviewSerializer
+
+    permission_classes = [Or(AllUserRead, AllUserWrite)]

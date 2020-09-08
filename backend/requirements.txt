@@ -5,4 +5,5 @@ djangorestframework==3.11.1
 djangorestframework-jwt==1.11.0
 PyJWT==1.7.1
 pytz==2020.1
+rest-condition==1.0.3
 sqlparse==0.3.1
