@@ -1,4 +1,4 @@
-from core.settings import INSTALLED_APPS, SECRET_KEY, MIDDLEWARE, TEMPLATES
+from core.settings import INSTALLED_APPS, SECRET_KEY, MIDDLEWARE, TEMPLATES, REST_FRAMEWORK
 
 DATABASES = {
     'default': {
