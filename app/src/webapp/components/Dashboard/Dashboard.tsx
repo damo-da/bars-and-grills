@@ -29,8 +29,8 @@ const DashboardComponent = ({ restaurants }: DashboardProps) => {
           </Typography>
         </Toolbar>
       </AppBar>
-      <Container maxWidth="sm">
-        <Box my={10} />
+      <Container>
+        <Box my={1} />
         <Box className={styles.restaurantsContainer}>
           {restaurants.map((restaurant: Restaurant) => (
             <RestaurantItem key={restaurant.id} {...restaurant} />

@@ -23,7 +23,7 @@ class RestaurantSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Restaurant
-        fields = ['url', 'id', 'name', 'reviews', 'review_count', 'avg_rating']
+        fields = ['url', 'id', 'name', 'reviews', 'review_count', 'avg_rating', 'background_image_url']
 
 class RestaurantViewSet(viewsets.ModelViewSet):
     queryset = Restaurant.objects.annotate(

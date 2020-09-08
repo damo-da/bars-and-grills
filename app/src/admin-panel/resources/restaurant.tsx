@@ -13,6 +13,7 @@ export const RestaurantList = (props: any) => (
       <TextField source="name" />
       <TextField source="review_count" />
       <TextField source="avg_rating" />
+      <TextField source="background_image_url" />
       <EditButton basePath="/restaurants" />
       <DeleteButton />
     </Datagrid>
@@ -35,6 +36,7 @@ export const RestaurantEdit = (props: any) => (
     <SimpleForm>
       <TextInput disabled source="id" />
       <TextInput source="name" />
+      <TextInput source="background_image_url" />
     </SimpleForm>
   </Edit>
 );
@@ -43,6 +45,7 @@ export const RestaurantCreate = (props: any) => (
   <Create title="Add new Restaurant" {...props}>
     <SimpleForm>
       <TextInput source="name" />
+      <TextInput source="background_image_url" />
     </SimpleForm>
   </Create>
 );

@@ -11,6 +11,7 @@ Group = auth_models.Group
 # Create your models here.
 class Restaurant(models.Model):
     name = models.CharField(max_length=100)
+    background_image_url = models.CharField(max_length=1000, null=True)
 
     def __str__(self):
         return self.name
