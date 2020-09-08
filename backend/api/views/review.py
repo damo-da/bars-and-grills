@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers, viewsets
-from ..models import Restaurant, Review
+from api.models import Restaurant, Review
 
 class ReviewUserSerializer(serializers.ModelSerializer):
     class Meta:

@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from django.db.models import Count, Avg
 from rest_framework import serializers, viewsets
 
-from ..models import Restaurant, Review
+from api.models import Restaurant, Review
 
 class RestaurantUserSerializer(serializers.ModelSerializer):
     class Meta:
