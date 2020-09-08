@@ -12,13 +12,12 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = User
-        fields = ['id', 'username', 'email', 'password']
+        fields = ['id', 'username', 'password']
 
     def save(self, **kwargs):
         user = User(
             id=self.data.get('id', None),
             username=self.validated_data['username'],
-            email=self.validated_data['email']
         )
         
         user.set_password(self.validated_data['password'])

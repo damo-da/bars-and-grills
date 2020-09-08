@@ -6,3 +6,5 @@ DATABASES = {
         'NAME': 'test.db.sqlite3',
     }
 }
+
+ROOT_URLCONF = 'api.urls'
