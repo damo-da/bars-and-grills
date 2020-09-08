@@ -2,7 +2,7 @@ from rest_framework import serializers, status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
-from ..models import User
+from ..models import User, Group
 
 
 class SignupSerializer(serializers.ModelSerializer):
@@ -20,6 +20,10 @@ class SignupSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError('Password length must be greater than 6.')
 
         user.set_password(password)
+        user.save()
+
+        group, _ = Group.objects.get_or_create(name='Regular')
+        user.groups.add(group)
         user.save()
 
         return user

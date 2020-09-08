@@ -54,10 +54,14 @@ class LoginTestCase(unittest.TestCase):
         self.assertEqual(self.response.status_code, 400)
 
     def test_signup_group(self):
-        """Signed up user must be a regular user."""
+        """Signed up user must be in the Regular group."""
         self.test_signup()
 
         self.assertEqual(self.response.status_code, 201)
+
+        self.user = User.objects.get(username=self.username)
+
+        self.assertTrue(self.user.groups.filter(name='Regular').exists())
 
 
 if __name__ == '__main__':
