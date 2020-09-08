@@ -1,6 +1,7 @@
 import React from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/core/styles';
+import { SnackbarProvider } from 'notistack';
 
 import history from 'utils/history';
 
@@ -12,10 +13,13 @@ import './App.scss';
 function App() {
   return (
     <div className="App">
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <Router history={history} />
-      </ThemeProvider>
+      <SnackbarProvider maxSnack={2}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <Router history={history} />
+        </ThemeProvider>
+      </SnackbarProvider>
+
     </div>
   );
 }

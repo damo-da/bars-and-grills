@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import {
   Container, Box, makeStyles, Typography, Grid,
 } from '@material-ui/core';
+import { useSnackbar } from 'notistack';
 
 import LoginSignup from 'webapp/components/LoginSignup/LoginSignup';
 import { LoginFormData } from 'types/login';
@@ -39,6 +40,7 @@ const useStyles = makeStyles((theme: any) => ({
 
 const LoginPage = () => {
   const history = useHistory();
+  const { enqueueSnackbar } = useSnackbar();
   const styles = useStyles();
 
   const handleLogin = async ({ username, password }: LoginFormData) => {
@@ -49,18 +51,18 @@ const LoginPage = () => {
       history.replace('/');
     } catch (e) {
       // eslint-disable-next-line no-console
-      console.error('Logging in failed!.', e);
+      console.error(e);
+      enqueueSnackbar('Logging in failed', { variant: 'error' });
     }
   };
 
   // eslint-disable-next-line no-unused-vars
   const handleSignup = async ({ username, password }: LoginFormData) => {
-    history.push('/admin');
+    enqueueSnackbar('Signup is not yet implemented...');
   };
 
   const handleForgetPassword = async () => {
-    // eslint-disable-next-line no-alert
-    alert('Please contact administrator to reset your password.');
+    enqueueSnackbar('Please contact administrator to reset your password.');
   };
 
   return (
