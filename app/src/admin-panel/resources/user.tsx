@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {
   List, Datagrid, Edit, Create, SimpleForm, TextField, EditButton, TextInput, DeleteButton,
+  PasswordInput,
 } from 'react-admin';
 import MuiUserIcon from '@material-ui/icons/Person';
 
@@ -36,6 +37,7 @@ export const UserEdit = (props: any) => (
       <TextInput disabled source="id" />
       <TextInput source="username" />
       <TextInput source="email" />
+      <PasswordInput source="password" />
     </SimpleForm>
   </Edit>
 );
@@ -45,6 +47,7 @@ export const UserCreate = (props: any) => (
     <SimpleForm>
       <TextInput source="username" />
       <TextInput source="email" />
+      <PasswordInput source="password" />
     </SimpleForm>
   </Create>
 );
