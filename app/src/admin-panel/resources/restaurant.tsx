@@ -23,7 +23,7 @@ export const RestaurantList = (props: any) => (
 const RestaurantTitle = ({ record }: { record?: any }) => (
   <span>
     Restaurant
-    {record ? `"${record.name}"` : ''}
+    {record ? `${record.name}` : ''}
   </span>
 );
 

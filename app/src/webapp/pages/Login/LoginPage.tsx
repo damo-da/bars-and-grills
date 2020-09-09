@@ -8,7 +8,7 @@ import { useSnackbar } from 'notistack';
 import LoginSignup from 'webapp/components/LoginSignup/LoginSignup';
 import { LoginFormData } from 'types/login';
 import api from 'webapp/utils/api';
-import logo from 'assets/images/logo.svg';
+import logo from 'assets/images/drink.png';
 import { setCredentials } from 'webapp/utils/auth';
 import barBg from 'assets/images/bar-bg.png';
 import { decodeJwt } from 'utils/jwt';
@@ -28,6 +28,7 @@ const useStyles = makeStyles((theme: any) => ({
     height: '100%',
     width: '100%',
     backgroundRepeat: 'no-repeat',
+    backgroundSize: 'contain',
   },
   container: {
     background: `url(${barBg})`,
@@ -78,7 +79,7 @@ const LoginPage = () => {
 
   return (
     <Container maxWidth={false} className={styles.container}>
-      <Grid xs={8} sm={5} md={3} alignContent="center" alignItems="center" className={styles.innerContainer}>
+      <Grid item xs={8} sm={5} md={3} className={styles.innerContainer}>
         <Box className={styles.logoContainer}>
           <div className={styles.logo} />
         </Box>

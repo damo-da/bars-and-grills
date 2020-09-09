@@ -21,6 +21,12 @@ const useStyles = makeStyles((theme) => ({
   },
   avgRating: {
     fontSize: 14,
+    marginRight: theme.spacing(0.5),
+  },
+  ratingContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   star: {
     fontSize: 14,
@@ -31,7 +37,8 @@ const useStyles = makeStyles((theme) => ({
     borderWidth: 2,
     borderColor: theme.palette.grey.A700,
     background: '#ccca',
-    display: 'inline-flex',
+    display: 'grid',
+    gridTemplateColumns: 'minmax(200px, 25%) 1fr',
   },
 }));
 
@@ -50,7 +57,7 @@ const RestaurantItemComponent = ({ restaurant, onClick }: RestaurantItemProps) =
   };
 
   return (
-    <Grid xs={11} sm={6} md={4} lg={3} className={classes.container}>
+    <Grid xs={12} sm={6} md={4} lg={4} item className={classes.container}>
       <ButtonBase onClick={cardClicked}>
         <Paper
           className={classes.root}
@@ -66,13 +73,15 @@ const RestaurantItemComponent = ({ restaurant, onClick }: RestaurantItemProps) =
             >
               {name}
             </Typography>
-            <Star className={classes.star} />
-            <Typography
-              className={classes.avgRating}
-              color="textPrimary"
-            >
-              {avg_rating ?? '-'}
-            </Typography>
+            <span className={classes.ratingContainer}>
+              <Typography
+                className={classes.avgRating}
+                color="textPrimary"
+              >
+                {avg_rating ?? '-'}
+              </Typography>
+              <Star className={classes.star} />
+            </span>
           </Box>
         </Paper>
       </ButtonBase>

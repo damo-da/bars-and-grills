@@ -5,6 +5,7 @@ import api from 'admin-panel/utils/api';
 import Dashboard from 'admin-panel/components/Dashboard/Dashboard';
 import authProvider from 'admin-panel/utils/auth-provider';
 import drfProvider from 'admin-panel/utils/data-provider';
+import theme from 'admin-panel/styles/theme';
 
 import {
   RestaurantIcon,
@@ -33,6 +34,7 @@ function App() {
       dataProvider={drfProvider('', api)}
       dashboard={Dashboard}
       authProvider={authProvider}
+      theme={theme}
     >
       <Resource
         name="restaurants"

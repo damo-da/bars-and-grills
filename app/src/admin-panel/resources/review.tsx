@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {
   List, Datagrid, Edit, Create, SimpleForm, TextField, EditButton, TextInput, DeleteButton,
-  ReferenceField, ReferenceInput, SelectInput, NumberInput,
+  ReferenceField, ReferenceInput, SelectInput, NumberInput, DateField,
 } from 'react-admin';
 import UserIcon from '@material-ui/icons/VerifiedUser';
 
@@ -13,6 +13,7 @@ export const ReviewList = (props: any) => (
       <TextField source="id" />
       <TextField source="comment" />
       <TextField source="rating" />
+      <DateField showTime source="timestamp" />
 
       <ReferenceField
         source="restaurant.id"
@@ -37,8 +38,8 @@ export const ReviewList = (props: any) => (
 
 const ReviewTitle = ({ record }: { record?: any }) => (
   <span>
-    Restaurant
-    {record ? `"${record.name}"` : ''}
+    Review
+    {record ? ` by @${record.user.username}` : ''}
   </span>
 );
 

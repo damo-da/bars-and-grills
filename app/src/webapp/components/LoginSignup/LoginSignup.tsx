@@ -80,7 +80,7 @@ const LoginSignupComponent = ({
           <Button
             variant="outlined"
             color="primary"
-            style={{ textTransform: 'none' }}
+            style={{ textTransform: 'none', marginRight: '1rem' }}
             onClick={() => onLogin({ username, password })}
           >
             Login

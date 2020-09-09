@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-  Toolbar, AppBar, Typography, Container, makeStyles, Box, Button, Menu, MenuItem, IconButton,
+  Toolbar, AppBar, Typography, Container, makeStyles, Box, Menu, MenuItem, IconButton,
 } from '@material-ui/core';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import {
-  Dialog, useMediaQuery, useTheme, DialogTitle, Container, AppBar,
-  makeStyles, Theme, createStyles, IconButton, Typography, Toolbar,
-  List, ListItem, CardMedia, Card, CardContent,
+  Dialog, useMediaQuery, useTheme, Container, AppBar,
+  makeStyles, createStyles, IconButton, Typography, Toolbar,
+  CardMedia, Card, CardContent,
 } from '@material-ui/core';
 import { Close as CloseIcon } from '@material-ui/icons';
 import * as R from 'ramda';
@@ -24,7 +24,7 @@ type RestaurantDetailsDialogProps = {
   restaurantId?: number,
 };
 
-const useStyles = makeStyles((theme: Theme) => createStyles({
+const useStyles = makeStyles(() => createStyles({
   appBar: {
     position: 'relative',
   },
@@ -65,7 +65,7 @@ const RestaurantDetailsDialog = ({ open, onClose, restaurantId }: RestaurantDeta
     // calculate latest, highest and lowest reviews
     if (restaurant?.reviews) {
       const comparator1: Review = {
-        timestamp: new Date('2120 August 24'),
+        timestamp: new Date('2001 August 24').toISOString(),
         rating: 0,
         id: 0,
         comment: '',
@@ -75,7 +75,7 @@ const RestaurantDetailsDialog = ({ open, onClose, restaurantId }: RestaurantDeta
         },
       };
       const comparator2: Review = {
-        timestamp: new Date('2120 August 24'),
+        timestamp: new Date('2120 August 24').toISOString(),
         rating: 6,
         id: 0,
         comment: '',
@@ -86,7 +86,7 @@ const RestaurantDetailsDialog = ({ open, onClose, restaurantId }: RestaurantDeta
       };
 
       const latestReview = R.reduce(
-        R.minBy((review:Review) => review.timestamp),
+        R.maxBy((review:Review) => review.timestamp),
         comparator1,
         restaurant.reviews,
       );
@@ -114,7 +114,7 @@ const RestaurantDetailsDialog = ({ open, onClose, restaurantId }: RestaurantDeta
     } else {
       setRestaurantDetailsState({});
     }
-  }, [restaurant]);
+  }, [restaurant, userId]);
 
   const handleClose = () => {
     setRestaurant(undefined);
@@ -161,6 +161,7 @@ const RestaurantDetailsDialog = ({ open, onClose, restaurantId }: RestaurantDeta
 
   useEffect(() => {
     loadRestaurant();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [restaurantId]);
 
   return (
@@ -209,7 +210,7 @@ const RestaurantDetailsDialog = ({ open, onClose, restaurantId }: RestaurantDeta
               </Typography>
               <Typography variant="body1" color="textPrimary" component="p">
                 {!(restaurant.reviews?.length) && (
-                  <div>No rating/reviews yet. Be the first one to rate/review.</div>
+                  <span>No rating/reviews yet. Be the first one to rate/review.</span>
                 )}
               </Typography>
             </CardContent>

@@ -12,7 +12,6 @@ export const UserList = (props: any) => (
     <Datagrid>
       <TextField source="id" />
       <TextField source="username" />
-      <TextField source="email" />
 
       <EditButton />
       <DeleteButton />
@@ -23,7 +22,7 @@ export const UserList = (props: any) => (
 const UserTitle = ({ record }: { record?: any }) => (
   <span>
     User
-    {record ? `"@${record.username}"` : ''}
+    {record ? ` @${record.username}` : ''}
   </span>
 );
 
@@ -36,7 +35,6 @@ export const UserEdit = (props: any) => (
     <SimpleForm>
       <TextInput disabled source="id" />
       <TextInput source="username" />
-      <TextInput source="email" />
       <PasswordInput source="password" />
     </SimpleForm>
   </Edit>
@@ -46,7 +44,6 @@ export const UserCreate = (props: any) => (
   <Create title="Add new User" {...props}>
     <SimpleForm>
       <TextInput source="username" />
-      <TextInput source="email" />
       <PasswordInput source="password" />
     </SimpleForm>
   </Create>
