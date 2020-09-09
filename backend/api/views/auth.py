@@ -1,5 +1,5 @@
 from rest_framework import serializers, status
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 
 from ..models import User, Group
@@ -28,13 +28,16 @@ class SignupSerializer(serializers.ModelSerializer):
 
         return user
 
-
 @api_view(['POST'])
+@permission_classes(()) # allow everyone
 def signup(request):
     serializer = SignupSerializer(data=request.data)
 
     if serializer.is_valid():
         user = serializer.save()
-        return Response({'username': user.username}, status=status.HTTP_201_CREATED)
+        return Response({
+            'id': user.id,
+        }, status=status.HTTP_201_CREATED)
     else:
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+

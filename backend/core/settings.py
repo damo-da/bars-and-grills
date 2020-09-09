@@ -140,6 +140,7 @@ CORS_ALLOW_ALL_ORIGINS = True
 
 JWT_AUTH = {
     'JWT_EXPIRATION_DELTA': datetime.timedelta(days=150),
+    'JWT_PAYLOAD_HANDLER': 'api.utils.jwt_payload_handler',
 }
 
 APPEND_SLASH = True

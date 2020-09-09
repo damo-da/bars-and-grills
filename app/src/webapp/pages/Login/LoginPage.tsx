@@ -11,6 +11,7 @@ import api from 'webapp/utils/api';
 import logo from 'assets/images/logo.svg';
 import { setCredentials } from 'webapp/utils/auth';
 import barBg from 'assets/images/bar-bg.png';
+import {decodeJwt} from "../../../utils/jwt";
 
 const useStyles = makeStyles((theme: any) => ({
   logoContainer: {
@@ -46,7 +47,11 @@ const LoginPage = () => {
   const handleLogin = async ({ username, password }: LoginFormData) => {
     try {
       const { data: { token } } = await api.post('/login', { username, password });
-      setCredentials({ jwt: token });
+
+      const payload = decodeJwt(token);
+      setCredentials(payload);
+
+      enqueueSnackbar(`Welcome, ${payload.username}!`);
 
       history.replace('/');
     } catch (e) {
@@ -58,7 +63,13 @@ const LoginPage = () => {
 
   // eslint-disable-next-line no-unused-vars
   const handleSignup = async ({ username, password }: LoginFormData) => {
-    enqueueSnackbar('Signup is not yet implemented...');
+    try {
+      await api.post('/signup', { username, password });
+
+      handleLogin({ username, password });
+    } catch (e) {
+      enqueueSnackbar('Signup failed. Please try again.', { variant: 'error' });
+    }
   };
 
   const handleForgetPassword = async () => {
