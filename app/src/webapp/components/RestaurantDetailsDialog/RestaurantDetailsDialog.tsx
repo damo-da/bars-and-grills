@@ -184,13 +184,15 @@ const RestaurantDetailsDialog = ({ open, onClose, restaurantId }: RestaurantDeta
         {!!restaurant && (
         <>
           <Card className={classes.card}>
-            <CardMedia
-              component="img"
-              alt="Background image"
-              height="200"
-              image={restaurant.background_image_url}
-              title={restaurant.name}
-            />
+            {restaurant.background_image_url && (
+              <CardMedia
+                component="img"
+                alt="Background image"
+                height="200"
+                image={restaurant.background_image_url}
+                title={restaurant.name}
+              />
+            )}
             <CardContent>
               <Typography variant="h6" color="textPrimary" component="h6">
                 {restaurant.name}
