@@ -28,6 +28,7 @@ class Review(models.Model):
     date_visited = models.DateTimeField(default=datetime.now)
     comment = models.CharField(max_length=COMMENT_LENGTH)
     rating = models.IntegerField(choices=RATING_CHOICES, null=False)
+    timestamp = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.comment

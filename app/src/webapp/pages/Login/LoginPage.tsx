@@ -11,7 +11,7 @@ import api from 'webapp/utils/api';
 import logo from 'assets/images/logo.svg';
 import { setCredentials } from 'webapp/utils/auth';
 import barBg from 'assets/images/bar-bg.png';
-import {decodeJwt} from "../../../utils/jwt";
+import { decodeJwt } from 'utils/jwt';
 
 const useStyles = makeStyles((theme: any) => ({
   logoContainer: {

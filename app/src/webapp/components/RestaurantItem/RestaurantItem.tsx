@@ -50,7 +50,7 @@ const RestaurantItemComponent = ({ restaurant, onClick }: RestaurantItemProps) =
   };
 
   return (
-    <Grid xs={11} sm={5} md={4} lg={3} className={classes.container}>
+    <Grid xs={11} sm={6} md={4} lg={3} className={classes.container}>
       <ButtonBase onClick={cardClicked}>
         <Paper
           className={classes.root}

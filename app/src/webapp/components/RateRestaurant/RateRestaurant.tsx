@@ -1,5 +1,7 @@
-import React, {FormEvent} from 'react';
-import {Button, makeStyles, TextField} from '@material-ui/core';
+import React, { FormEvent } from 'react';
+import {
+  Button, FormControl, makeStyles, Paper, TextField, Typography,
+} from '@material-ui/core';
 import { Rating } from '@material-ui/lab';
 
 type RateRestaurantProps = {
@@ -12,6 +14,13 @@ const useStyles = makeStyles((theme) => ({
   form: {
 
   },
+  paper: {
+    padding: theme.spacing(2),
+  },
+  commentControl: {
+    paddingTop: theme.spacing(1),
+    paddingBottom: theme.spacing(1),
+  },
 }));
 
 const RateRestaurantComponent = ({
@@ -23,6 +32,13 @@ const RateRestaurantComponent = ({
   const [comment, setComment] = React.useState<string>(defaultComment || '');
   const classes = useStyles();
 
+  React.useEffect(() => {
+    if (defaultRating) setRating(defaultRating);
+  }, [defaultRating]);
+  React.useEffect(() => {
+    if (defaultComment) setComment(defaultComment);
+  }, [defaultComment]);
+
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
 
@@ -33,22 +49,37 @@ const RateRestaurantComponent = ({
   };
 
   return (
-    <form noValidate className={classes.form} onSubmit={handleSubmit}>
-      <Rating
-        name="rating"
-        value={rating}
-        onChange={(e: React.ChangeEvent<{}>, newValue: number|null) => setRating(newValue || 0)}
-      />
-      <TextField
-        id="standard-basic"
-        label="Review"
-        value={comment}
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setComment(e.target.value)}
-      />
-      <Button variant="contained" color="primary" type="submit">
-        Rate/Review
-      </Button>
-    </form>
+    <Paper elevation={2} className={classes.paper}>
+      <Typography variant="body1" color="textPrimary" component="p">
+        Submit your review
+      </Typography>
+      <form noValidate autoComplete="off" className={classes.form} onSubmit={handleSubmit}>
+        <FormControl fullWidth>
+          <Rating
+            name="rating"
+            value={rating}
+            onChange={(e: React.ChangeEvent<{}>, newValue: number|null) => setRating(newValue || 0)}
+          />
+        </FormControl>
+        <FormControl fullWidth className={classes.commentControl}>
+          <TextField
+            id="standard-basic"
+            label="Review"
+            variant="outlined"
+            value={comment}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setComment(e.target.value)}
+            rowsMax={4}
+            rows={2}
+            multiline
+          />
+        </FormControl>
+        <FormControl fullWidth>
+          <Button variant="contained" color="primary" type="submit">
+            Rate/Review
+          </Button>
+        </FormControl>
+      </form>
+    </Paper>
   );
 };
 

@@ -16,7 +16,7 @@ class RestaurantReviewSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Review
-        fields = ['url', 'id', 'comment', 'rating', 'restaurant', 'user']
+        fields = ['url', 'id', 'comment', 'rating', 'restaurant', 'user', 'timestamp']
 
 class RestaurantSerializer(serializers.HyperlinkedModelSerializer):
     reviews = RestaurantReviewSerializer(many=True, read_only=True)

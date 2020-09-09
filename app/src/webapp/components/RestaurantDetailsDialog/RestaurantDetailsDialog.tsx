@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import {
   Dialog, useMediaQuery, useTheme, DialogTitle, Container, AppBar,
   makeStyles, Theme, createStyles, IconButton, Typography, Toolbar,
-  List, ListItem,
+  List, ListItem, CardMedia, Card, CardContent,
 } from '@material-ui/core';
 import { Close as CloseIcon } from '@material-ui/icons';
 import * as R from 'ramda';
@@ -16,6 +16,7 @@ import api from 'webapp/utils/api';
 import localStorageProvider from 'utils/localstorage-provider';
 import ReviewItemComponent from 'webapp/components/ReviewItem/ReviewItem';
 import RateRestaurant from 'webapp/components/RateRestaurant/RateRestaurant';
+import { Rating } from '@material-ui/lab';
 
 type RestaurantDetailsDialogProps = {
   open: boolean,
@@ -28,10 +29,13 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
     position: 'relative',
   },
   title: {
-    marginLeft: theme.spacing(2),
     flex: 1,
+    textAlign: 'center',
   },
   reviewTitle: {
+
+  },
+  card: {
 
   },
 }));
@@ -54,7 +58,7 @@ const RestaurantDetailsDialog = ({ open, onClose, restaurantId }: RestaurantDeta
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
   const [restaurant, setRestaurant] = useState<Restaurant|undefined>(undefined);
   const classes = useStyles();
-
+  const userId = localStorageProvider.getUserId();
   const [restaurantDetailsState, setRestaurantDetailsState] = useState<RetaurantDetailsState>({});
 
   React.useEffect(() => {
@@ -99,7 +103,6 @@ const RestaurantDetailsDialog = ({ open, onClose, restaurantId }: RestaurantDeta
         restaurant.reviews,
       );
 
-      const userId = localStorageProvider.getUserId();
       const userReview = userId ? restaurant.reviews.find((r) => r.user.id === userId) : undefined;
 
       setRestaurantDetailsState({
@@ -128,8 +131,6 @@ const RestaurantDetailsDialog = ({ open, onClose, restaurantId }: RestaurantDeta
   const handleReview = async ({ comment, rating }: ReviewInput) => {
     if (!restaurant) return;
 
-    const userId = localStorageProvider.getUserId();
-
     const apiData: any = {
       comment,
       rating,
@@ -148,8 +149,11 @@ const RestaurantDetailsDialog = ({ open, onClose, restaurantId }: RestaurantDeta
 
         enqueueSnackbar('Review added.');
       }
+
+      // reload restaurant details and reviews
+      loadRestaurant();
     } catch (e) {
-      console.error(e);
+      // console.error(e);
 
       enqueueSnackbar('Unable to review restaurant. Please try again later.');
     }
@@ -165,7 +169,6 @@ const RestaurantDetailsDialog = ({ open, onClose, restaurantId }: RestaurantDeta
       onClose={handleClose}
       fullScreen={fullScreen}
     >
-
       <AppBar className={classes.appBar}>
         <Toolbar>
           <IconButton edge="start" color="inherit" onClick={handleClose} aria-label="close">
@@ -177,27 +180,57 @@ const RestaurantDetailsDialog = ({ open, onClose, restaurantId }: RestaurantDeta
         </Toolbar>
       </AppBar>
 
-      <Container>
+      <Container maxWidth={false}>
         {!!restaurant && (
         <>
-          <DialogTitle>{restaurant.name}</DialogTitle>
-          {!(restaurant.reviews?.length) && (
-          <div>No rating/reviews yet. Be the first one to rate/review.</div>
-          )}
-          {restaurant.reviews && restaurant.reviews.map((review) => (
-            <ReviewItemComponent
-              key={review.id}
-              review={review}
-              isHighest={restaurantDetailsState.highestReview === review}
-              isLowest={restaurantDetailsState.lowestReview === review}
-              isLatest={restaurantDetailsState.latestReview === review}
+          <Card className={classes.card}>
+            <CardMedia
+              component="img"
+              alt="Background image"
+              height="200"
+              image={restaurant.background_image_url}
+              title={restaurant.name}
             />
-          ))}
-          <RateRestaurant
-            onSubmit={handleReview}
-            defaultComment={restaurantDetailsState.userReview?.comment}
-            defaultRating={restaurantDetailsState.userReview?.rating}
-          />
+            <CardContent>
+              <Typography variant="h6" color="textPrimary" component="h6">
+                {restaurant.name}
+              </Typography>
+              <Rating
+                name="avg_rating"
+                size="large"
+                value={restaurant.avg_rating}
+                precision={0.5}
+                readOnly
+              />
+              <Typography variant="body2" color="textSecondary" component="p">
+                {`Average rating: ${restaurant.avg_rating}`}
+              </Typography>
+              <Typography variant="body1" color="textPrimary" component="p">
+                {!(restaurant.reviews?.length) && (
+                  <div>No rating/reviews yet. Be the first one to rate/review.</div>
+                )}
+              </Typography>
+            </CardContent>
+            <CardContent>
+              {restaurant.reviews && restaurant.reviews.map((review) => (
+                <ReviewItemComponent
+                  key={review.id}
+                  review={review}
+                  isHighest={restaurantDetailsState.highestReview === review}
+                  isLowest={restaurantDetailsState.lowestReview === review}
+                  isLatest={restaurantDetailsState.latestReview === review}
+                  isCurrentUserReview={review.user.id === userId}
+                />
+              ))}
+            </CardContent>
+            <CardContent>
+              <RateRestaurant
+                onSubmit={handleReview}
+                defaultComment={restaurantDetailsState.userReview?.comment}
+                defaultRating={restaurantDetailsState.userReview?.rating}
+              />
+            </CardContent>
+          </Card>
         </>
         )}
       </Container>
