@@ -1,5 +1,8 @@
 import type { Review } from 'types/review';
 
+/**
+ * Restaurant Model.
+ */
 export type Restaurant = {
   id: number,
   name: string,
