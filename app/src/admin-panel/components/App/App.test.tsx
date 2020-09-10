@@ -1,9 +1,16 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, waitForElement } from '@testing-library/react';
+import { TestContext } from 'react-admin';
 import App from './App';
 
-test('renders learn react link', () => {
-  const { getByText } = render(<App />);
-  const linkElement = getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+describe('webapp/components/App/App', () => {
+  test('renders login upon initialization', async () => {
+    const screen = render(<App />);
+
+    const container = await waitForElement(() => {
+      return screen.container;
+    }, { container: screen.container });
+
+    expect(screen.getByText(/Sign in/)).toBeInTheDocument();
+  });
 });

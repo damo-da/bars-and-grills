@@ -1,25 +1,22 @@
 import localStorageProvider from 'utils/localstorage-provider';
 
-function client(endpoint: string, { body, ...customConfig }: any = {}) {
+function client(endpoint: string, { config }: any = {}) {
   const token = localStorageProvider.getJwt();
   const headers: any = { 'Content-Type': 'application/json' };
   if (token) {
     headers.Authorization = `JWT ${token}`;
   }
 
-  const config = {
-    method: body ? 'POST' : 'GET',
-    ...customConfig,
+  const finalConfig = {
+    method: config?.body ? 'POST' : 'GET',
+    ...config,
     headers: {
       ...headers,
-      ...customConfig.headers,
+      ...config?.headers ?? {},
     },
   };
-  if (body) {
-    config.body = body;
-  }
 
-  return fetch(`${process.env.REACT_APP_API_ENDPOINT}${endpoint}`, config)
+  return fetch(`${process.env.REACT_APP_API_ENDPOINT}${endpoint}`, finalConfig)
     .then(async (response) => {
       const data = await response.text();
 

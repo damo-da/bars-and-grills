@@ -42,6 +42,8 @@
     "eslint-plugin-jsx-a11y": "^6.3.1",
     "eslint-plugin-react": "^7.20.6",
     "eslint-plugin-react-hooks": "^4.1.0",
+    "jest-localstorage-mock": "^2.4.3",
+    "mockserver": "^3.1.1",
     "tslint": "^6.1.3",
     "typescript": "^3.9.7"
   },
@@ -56,6 +58,7 @@
   "eslintConfig": {
     "extends": "react-app"
   },
+
   "browserslist": {
     "production": [
       ">0.2%",

@@ -19,7 +19,6 @@ function App() {
           <Router history={history} />
         </ThemeProvider>
       </SnackbarProvider>
-
     </div>
   );
 }
