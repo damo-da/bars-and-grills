@@ -5,20 +5,37 @@ from typing import List
 
 from rest_framework.test import APIClient
 
-from api.models import Restaurant, User
+from api.models import Restaurant, User, Group
 
 class RestaurantTestCase(unittest.TestCase):
     def setUp(self) -> None:
         self.restaurant_name = 'Best Burgers'
         self.restaurant_background_url = 'https://foo.bar/image.jpg'
 
-        self.user = User(username="poppycat")
-        self.user.save()
+        self.admin = None
+        self.admin_group = None
+        self.user = None
+        self.user_group = None
 
         self.client = APIClient()
 
         self.response = None
         self.restaurant = None
+
+    def create_admin(self):
+        self.admin, _ = User.objects.get_or_create(username='admino')
+        self.admin.save()
+
+        self.admin_group, _ = Group.objects.get_or_create(name='Admin')
+        self.admin.groups.add(self.admin_group)
+        self.admin.save()
+
+    def create_user(self):
+        self.user, _ = User.objects.get_or_create(username='usero')
+
+        self.user_group, _ = Group.objects.get_or_create(name='Regular')
+        self.user.groups.add(self.user_group)
+        self.user.save()
 
     def tearDown(self) -> None:
         if self.restaurant:
@@ -26,6 +43,9 @@ class RestaurantTestCase(unittest.TestCase):
 
         if self.user:
             self.user.delete()
+
+        if self.admin:
+            self.admin.delete()
 
     def create_restaurant(self):
         self.restaurant, _ = Restaurant.objects.get_or_create(
@@ -35,6 +55,7 @@ class RestaurantTestCase(unittest.TestCase):
 
     def test_get_one(self, do_assert=True):
         """Getting a single restaurant is possible"""
+        self.create_user()
         self.client.force_authenticate(self.user)
         self.create_restaurant()
 
@@ -45,6 +66,7 @@ class RestaurantTestCase(unittest.TestCase):
 
     def test_get_many(self):
         """Restaurant listing should work."""
+        self.create_user()
         self.client.force_authenticate(self.user)
         self.create_restaurant()
 
@@ -60,7 +82,8 @@ class RestaurantTestCase(unittest.TestCase):
 
     def test_create(self):
         """Restaurant should be able to be created."""
-        self.client.force_authenticate(self.user)
+        self.create_admin()
+        self.client.force_authenticate(self.admin)
 
         self.response = self.client.post('/restaurants/', {
             'name': self.restaurant_name,
@@ -75,7 +98,8 @@ class RestaurantTestCase(unittest.TestCase):
 
     def test_delete(self):
         """Restaurant should be able to be deleted."""
-        self.client.force_authenticate(self.user)
+        self.create_admin()
+        self.client.force_authenticate(self.admin)
         self.create_restaurant()
 
         self.response = self.client.delete(f'/restaurants/{self.restaurant.id}/')
@@ -87,7 +111,8 @@ class RestaurantTestCase(unittest.TestCase):
 
     def test_update(self):
         """Restaurant should be able to be updated."""
-        self.client.force_authenticate(self.user)
+        self.create_admin()
+        self.client.force_authenticate(self.admin)
         self.create_restaurant()
 
         self.response = self.client.put(f'/restaurants/{self.restaurant.id}/', {
