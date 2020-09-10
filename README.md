@@ -20,6 +20,11 @@ All screenshots are placed in `./screenshots` directory. Select screenshots are 
 ![](./app/screenshots/admin-panel/reviews.png)
 ![](./app/screenshots/admin-panel/edit_review.png)
 
+### API
+Screenshot of Swagger definitions:
+![](./backend/screenshots/swagger.png)
+![](./backend/screenshots/swagger2.png)
+
 ## Features
 * Responsive, pixel-perfect Material UI design
 * CRUD API with Pagination
@@ -28,8 +33,10 @@ All screenshots are placed in `./screenshots` directory. Select screenshots are 
 * TypeScript types
 * Unit and e2e tests
 * Swagger Dashboard for API
+* Django unit tests
 
 ## License
 See [LICENSE](./LICENSE) file.
+
 ## Contributors
 This project was setup by Damodar Dahal <hi@damodar.dev>. Thank you for browsing!

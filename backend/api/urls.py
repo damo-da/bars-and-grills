@@ -2,6 +2,7 @@ from django.urls import path, include
 from rest_framework import routers
 from rest_framework_jwt.views import obtain_jwt_token
 from .views import UserViewSet, RestaurantViewSet, ReviewViewSet, signup
+from .swagger import urlpatterns as swaggerpatterns
 
 router = routers.DefaultRouter(trailing_slash='/?')
 router.register(r'users', UserViewSet)
@@ -12,5 +13,6 @@ urlpatterns = [
     path('', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('login', obtain_jwt_token),
-    path('signup', signup)
+    path('signup', signup),
+    *swaggerpatterns,
 ]
