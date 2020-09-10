@@ -11,10 +11,11 @@ It contains the following components:
 ## Screenshots
 All screenshots are placed in `./screenshots` directory. Select screenshots are shown below:
 ### Webapp
-![](./app/screenshots/webapp/restaurant_details_desktop.png)
-![](./app/screenshots/webapp/restaurant_list_ipad.png)
-![](./app/screenshots/webapp/restaurant_list_iphone.png)
-![](./app/screenshots/webapp/login_ipad.png)
+Responsive layout supporting Mobile, Tablet and Desktop devices.
+
+<img src="./app/screenshots/webapp/restaurant_list_iphone.png" width="300px"> <img src="./app/screenshots/webapp/login_ipad.png" width="400px">  |
+<img src="./app/screenshots/webapp/restaurant_details_desktop.png" width="100%">
+
 
 ### Admin panel
 ![](./app/screenshots/admin-panel/reviews.png)
