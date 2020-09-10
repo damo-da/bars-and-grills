@@ -32,6 +32,7 @@ export default {
     if (!jwt) {
       throw Error('You are not logged in.');
     }
+    return true;
   },
   getPermissions: async () => localStorageProvider.getGroups(),
 };
