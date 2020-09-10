@@ -32,9 +32,11 @@ Screenshot of Swagger definitions:
 * Role-based authentications using JWT
 * React Hooks
 * TypeScript types
+* Swagger API
 * Unit and e2e tests
-* Swagger Dashboard for API
 * Django unit tests
+* [Postman routes](https://www.getpostman.com/collections/ddc8f21db248ec42dd03)
+
 
 ## License
 See [LICENSE](./LICENSE) file.
