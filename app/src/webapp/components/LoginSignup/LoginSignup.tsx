@@ -1,38 +1,43 @@
 import React from 'react';
 import {
-  Paper, withStyles, Grid, TextField, Button,
+  Paper, makeStyles, Grid, TextField, Button,
 } from '@material-ui/core';
-import type { LoginFormData } from 'types/login';
+import type { LoginSignupProps } from 'types/login';
 
-const styles = (theme: any) => ({
+const useStyles = makeStyles((theme: any) => ({
   margin: {
     margin: theme.spacing(2),
   },
   padding: {
     padding: theme.spacing(1),
   },
-});
-
-// TypeScript parsing bug for no-unused-vars.
-// See https://github.com/eslint/typescript-eslint-parser/issues/457
-// eslint-disable-next-line no-unused-vars
-interface LoginSignupCallback { (params: LoginFormData): Promise<void> }
-
-type LoginSignupProps = {
-  classes: any,
-  onForgetPasswordClick: () => Promise<void>,
-  onLogin: LoginSignupCallback,
-  onSignup: LoginSignupCallback,
-}
+}));
 
 const LoginSignupComponent = ({
-  classes,
   onForgetPasswordClick,
   onLogin,
   onSignup,
 }: LoginSignupProps) => {
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
+
+  const classes = useStyles();
+
+  const handleLogin = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (onLogin) onLogin({ username, password });
+  };
+
+  const handleSignup = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (onSignup) onSignup({ username, password });
+  };
+
+  const handleForgetPassword = (e: React.MouseEvent) => {
+    e.preventDefault();
+
+    if (onForgetPasswordClick) onForgetPasswordClick();
+  };
 
   return (
     <Paper className={classes.padding}>
@@ -42,6 +47,7 @@ const LoginSignupComponent = ({
             <TextField
               label="Username"
               type="text"
+              inputProps={{ 'aria-label': 'username_input' }}
               fullWidth
               autoFocus
               required
@@ -55,6 +61,7 @@ const LoginSignupComponent = ({
             <TextField
               label="Password"
               type="password"
+              inputProps={{ 'aria-label': 'password_input' }}
               fullWidth
               required
               defaultValue={password}
@@ -65,12 +72,13 @@ const LoginSignupComponent = ({
         <Grid container alignItems="center" justify="space-between">
           <Grid item>
             <Button
+              variant="text"
+              color="primary"
+              aria-label="on_forget_button"
               disableFocusRipple
               disableRipple
               style={{ textTransform: 'none' }}
-              variant="text"
-              color="primary"
-              onClick={onForgetPasswordClick}
+              onClick={handleForgetPassword}
             >
               Forgot password ?
             </Button>
@@ -80,16 +88,18 @@ const LoginSignupComponent = ({
           <Button
             variant="outlined"
             color="primary"
+            aria-label="login_button"
             style={{ textTransform: 'none', marginRight: '1rem' }}
-            onClick={() => onLogin({ username, password })}
+            onClick={handleLogin}
           >
             Login
           </Button>
           <Button
             variant="outlined"
             color="secondary"
+            aria-label="signup_button"
             style={{ textTransform: 'none' }}
-            onClick={() => onSignup({ username, password })}
+            onClick={handleSignup}
           >
             Sign Up
           </Button>
@@ -99,4 +109,4 @@ const LoginSignupComponent = ({
   );
 };
 
-export default withStyles(styles)(LoginSignupComponent);
+export default LoginSignupComponent;
