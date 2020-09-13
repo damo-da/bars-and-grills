@@ -1,5 +1,7 @@
 # Bars and Grills (Restaurant App)
 
+[![](https://circleci.com/gh/damo-da/bars-and-grills.svg?style=svg)](<https://circleci.com/gh/damo-da/bars-and-grills>)
+
 This app will show restaurants for the user and allow them to rate/review the restaurants.
 
 It contains the following components:
