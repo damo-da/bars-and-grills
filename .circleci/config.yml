@@ -5,4 +5,4 @@ workflows:
   node-tests:
     jobs:
       - node/test:
-        app-dir: 'app'
+          app-dir: ./app
