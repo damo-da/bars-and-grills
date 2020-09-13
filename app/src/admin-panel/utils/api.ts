@@ -1,40 +1,51 @@
+import type { ApiConfig } from 'types/api';
 import localStorageProvider from 'utils/localstorage-provider';
 
-function client(endpoint: string, { config }: any = {}) {
-  const token = localStorageProvider.getJwt();
-  const headers: any = { 'Content-Type': 'application/json' };
-  if (token) {
-    headers.Authorization = `JWT ${token}`;
-  }
-
-  const finalConfig = {
-    method: config?.body ? 'POST' : 'GET',
+const defaultConfig: ApiConfig = {
+  method: 'GET',
+  body: null,
+  headers: {
+    'Content-Type': 'application/json',
+  },
+};
+const prepareConfig = (config: ApiConfig) => {
+  const target = {
     ...config,
-    headers: {
-      ...headers,
-      ...config?.headers ?? {},
-    },
   };
 
-  return fetch(`${process.env.REACT_APP_API_ENDPOINT}${endpoint}`, finalConfig)
-    .then(async (response) => {
-      const data = await response.text();
+  target.headers = { ...defaultConfig.headers, ...target.headers };
 
-      let json;
-      try {
-        json = data ? JSON.parse(data) : {};
-      } catch (e) {
-        return Promise.reject(new Error('Failed to parse response JSON.'));
-      }
+  if (!target.method) target.method = defaultConfig.method;
+  if (!target.body) target.body = defaultConfig.body;
 
-      if (response.ok) {
-        return {
-          headers: response.headers,
-          json,
-        };
-      }
-      return Promise.reject(json);
-    });
+  const userJwtToken = localStorageProvider.getJwt();
+  if (userJwtToken) {
+    target.headers.Authorization = `JWT ${userJwtToken}`;
+  }
+  return target;
+};
+
+async function client(endpoint: string, userConfig?: ApiConfig) {
+  const config = prepareConfig(userConfig || {});
+
+  const response = await fetch(`${process.env.REACT_APP_API_ENDPOINT}${endpoint}`, config);
+
+  const data = await response.text();
+
+  let json;
+  try {
+    json = data ? JSON.parse(data) : {};
+  } catch (e) {
+    return Promise.reject(new Error(`Failed to parse response JSON: ${data}`));
+  }
+
+  if (response.ok) {
+    return {
+      headers: response.headers,
+      json,
+    };
+  }
+  return Promise.reject(json);
 }
 
 export default client;

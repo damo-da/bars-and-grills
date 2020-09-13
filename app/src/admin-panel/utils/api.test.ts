@@ -1,4 +1,6 @@
 import api from './api';
+import {spyFetchMethod, spyLocalStorageMethod} from "utils/testing/utils.test";
+import {ApiConfig} from "types/api";
 
 describe('admin-panel/utils/api', () => {
   const endPoint = process.env.REACT_APP_API_ENDPOINT
@@ -21,25 +23,21 @@ describe('admin-panel/utils/api', () => {
     api('/');
   })
 
-  it('loads JWT token', async () => {
-    const mockFetchPromise = (route: RequestInfo, params: any) => {
-      expect(params).toBeTruthy();
-      expect(route).toEqual(`${endPoint}/`);
-      const authKey = params.headers['Authorization'];
+  it('Makes authenticated calls in presence of JWT', async () => {
+    const sampleToken = 'MY_JWT_TOKEN';
 
-      expect(authKey).toEqual('JWT token');
+    const fetchSpy = spyFetchMethod();
+    // @ts-ignore
+    fetchSpy.mockImplementationOnce(async (url, config: ApiConfig) => {
+      if (config?.headers?.Authorization === sampleToken) {
+        return new Response();
+      }
+      throw Error('Authorization not provided.');
+    })
 
-      return Promise.resolve(new Response());
-    }
+    const localStorageSpy = spyLocalStorageMethod('getItem');
+    localStorageSpy.mockImplementationOnce((key) => key === 'jwt' ? sampleToken : null);
 
-    const mockGetItem = (key: string) => {
-      expect(key).toEqual('jwt');
-      return 'token';
-    };
-
-    jest.spyOn(global.localStorage.__proto__, 'getItem').mockImplementationOnce(mockGetItem);
-    jest.spyOn(global, 'fetch').mockImplementationOnce(mockFetchPromise);
-
-    api('/');
+    expect(api('/')).rejects.toEqual(new Error('Authorization not provided.'));
   })
 });

@@ -15,3 +15,7 @@ export type LoginSignupProps = {
   onLogin?: LoginSignupCallback,
   onSignup?: LoginSignupCallback,
 };
+
+export type LoginApiPayload = {
+  token: string,
+};

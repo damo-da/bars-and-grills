@@ -9,7 +9,7 @@ import * as R from 'ramda';
 import { useSnackbar } from 'notistack';
 
 import type { Restaurant } from 'types/restaurant';
-import type { ApiResponse } from 'types/api-response';
+import type { ApiResponse } from 'types/api';
 import type { Review } from 'types/review';
 
 import api from 'webapp/utils/api';

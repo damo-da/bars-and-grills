@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import type { Paginated } from 'types/paginated';
 import { useLocation, useHistory } from 'react-router-dom';
 
+import type { Restaurant } from 'types/restaurant';
+import type { ApiResponse } from 'types/api';
+
 import Dashboard from 'webapp/components/Dashboard/Dashboard';
-import { Restaurant } from 'types/restaurant';
 import api from 'webapp/utils/api';
-import { ApiResponse } from 'types/api-response';
 import localStorageProvider from 'utils/localstorage-provider';
 
 const DashboardPage = () => {

@@ -1,64 +1,74 @@
-jest.mock('admin-panel/utils/api');
 import authProvider from './auth-provider';
-import api from './api';
+import { spyLocalStorageMethod, spyFetchMethod } from "utils/testing/utils.test";
 
 describe('webapp/utils/auth-provider', () => {
-  const sampleApiResponse = {
-    jwt: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6ImRhbW9kYXIiLCJleHAiOjE2MTI2NTQ1MDYsImVtYWlsIjoiZGFtb0BkYW1vLmNvbSIsImdyb3VwcyI6WyJBZG1pbiIsIlJlZ3VsYXIiXX0.DGTWSUxMFxBSnpsf0xBMCz1UjdETfrazL1-R6x1P7oI",
-    userId: "1",
-    groups: 'Admin,Regular',
-    username: 'damodar'
+  const sampleToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6ImRhbW9kYXIiLCJleHAiOjE2MTI2NTQ1MDYsImVtYWlsIjoiZGFtb0BkYW1vLmNvbSIsImdyb3VwcyI6WyJBZG1pbiIsIlJlZ3VsYXIiXX0.DGTWSUxMFxBSnpsf0xBMCz1UjdETfrazL1-R6x1P7oI";
+
+  const apiMock = jest.mock('admin-panel/utils/api').fn();
+
+  const setup = async () => {
+    return {
+      apiMock,
+      spyFetchMethod,
+      mockFunction: jest.fn(),
+      spyLocalStorageMethod,
+    };
   }
 
-  it('saves login credentials to password on login', async () => {
-    api.mockImplementation(() => Promise.resolve({json: { token: sampleApiResponse.jwt }}));
+  describe('login', () => {
+    it('saves login credentials to localStorage on login success', async () => {
+      const {
+        spyLocalStorageMethod,
+      } = await setup();
 
-    const localStorageSpy = jest.spyOn(global.localStorage.__proto__, 'setItem');
+      const localStorageSetterSpy = spyLocalStorageMethod('setItem');
 
-    await authProvider.login({username: 'foo', password: 'bar'})
+      const fetchSpy = spyFetchMethod();
+      fetchSpy.mockReturnValue(Promise.resolve(new Response(`{"token": "${sampleToken}"}`)));
 
-    expect(localStorageSpy).toHaveBeenCalledWith('jwt', sampleApiResponse.jwt);
-    expect(localStorageSpy).toHaveBeenCalledWith('userId', sampleApiResponse.userId);
-    expect(localStorageSpy).toHaveBeenCalledWith('groups', sampleApiResponse.groups);
-    expect(localStorageSpy).toHaveBeenCalledWith('username', sampleApiResponse.username);
+      // username and password not returned due to using mock api.
+      await authProvider.login({username: '', password: ''})
 
+      expect(localStorageSetterSpy).toHaveBeenCalledWith('jwt', sampleToken);
+    });
 
-  });
+    it('raises error if request fails.', async () => {
+      const {apiMock,} = await setup();
+      apiMock.mockReturnValue(Promise.reject());
 
-  it('raises error if logging in fails.', async () => {
-    api.mockImplementation(() => Promise.reject());
+      expect(authProvider.login({username: '', password: ''})).rejects.toThrow();
+    });
+  })
 
-    expect(authProvider.login({username: 'foo', password: 'bar'})).rejects.toThrow();
-  });
-
-  it('clears localstorage on logout.', async () => {
-    const spy = jest.spyOn(global.localStorage.__proto__, 'clear');
+  it('clears localStorage on logout.', async () => {
+    const { spyLocalStorageMethod } = await setup();
+    const localStorageClearSpy = spyLocalStorageMethod('clear');
 
     await authProvider.logout();
 
-    expect(spy).toHaveBeenCalled();
-
+    expect(localStorageClearSpy).toHaveBeenCalled();
   });
 
-  it('detects user is not logged-in if JWT not on localStorage', () => {
-    const mockGetJwt = (key: string) => {
-      expect(key).toEqual(key);
-      return null;
-    }
+  it('detects unauthenticated user from localStorage correctly', async () => {
+    const { spyLocalStorageMethod } = await setup();
+    const localStorageGetterSpy = spyLocalStorageMethod('getItem');
 
-    jest.spyOn(global.localStorage.__proto__, 'getItem').mockImplementationOnce(mockGetJwt)
+    // return null by default.
+    localStorageGetterSpy.mockImplementation((...args) => null);
 
-    expect(authProvider.checkAuth()).rejects.toThrowError();
+    expect(authProvider.checkAuth()).rejects.toThrowError('You are not logged in.');
   })
 
-  it('detects user is logged-in if JWT on localStorage', async () => {
-    const mockGetItem = (key: string) => {
-      expect(key).toEqual(key);
-      return 'some random key';
-    }
+  it('detects user logged-in from localStorage correctly', async () => {
+    const { spyLocalStorageMethod } = await setup();
+    const localStorageGetterSpy = spyLocalStorageMethod('getItem');
 
-    jest.spyOn(global.localStorage.__proto__, 'getItem').mockImplementationOnce(mockGetItem)
+    localStorageGetterSpy.mockImplementation((...args) => {
+      if (args[0] === 'jwt')
+        return `jwt-mock-${args.length}`;
+      return null;
+    });
 
-    expect(await authProvider.checkAuth()).toEqual(true);
+    expect(authProvider.checkAuth).not.toThrowError();
   })
 })
