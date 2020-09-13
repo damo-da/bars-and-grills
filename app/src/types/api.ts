@@ -14,4 +14,4 @@ export interface ApiConfig {
   body?: any,
   headers?: { [header: string]: string },
   status?: number,
-};
+}
