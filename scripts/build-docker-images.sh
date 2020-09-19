@@ -23,5 +23,23 @@ docker push "$API_URL"
 echo "API complete."
 cd ..
 
+cd app || (echo "Failed to load app. Execute this script from the root directory." && exit 1)
+docker build -t $WEB_APP_REPO -f webapp.Dockerfile .
+echo "Tagging"
+docker tag $WEB_APP_REPO "$WEB_APP_URL"
+echo "Pushing"
+docker push "$WEB_APP_URL"
+echo "Webapp complete."
+cd ..
+
+cd app || (echo "Failed to load app. Execute this script from the root directory." && exit 1)
+docker build -t $ADMIN_PANEL_REPO -f admin-panel.Dockerfile .
+echo "Tagging"
+docker tag $ADMIN_PANEL_REPO "$ADMIN_PANEL_URL"
+echo "Pushing"
+docker push "$ADMIN_PANEL_URL"
+echo "Admin panel complete."
+cd ..
+
 echo All done.
 
