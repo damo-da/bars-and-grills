@@ -11,10 +11,19 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+from os import path
 import datetime
+import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+environ.Env.read_env(env_file=path.join(BASE_DIR, '.env'))
+
+env = environ.Env(
+    # set casting, default value
+    DEBUG=(bool, False)
+)
 
 
 # Quick-start development settings - unsuitable for production
@@ -26,7 +35,7 @@ SECRET_KEY = 'mulz$=^2yl)jws_zb64_$0=x6p%s+w8!l4=3osik2g@$=e)skq'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 INSTALLED_APPS = [
@@ -79,10 +88,11 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
+    'sqlite': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    },
+    'default': env.db(),
 }
 
 
