@@ -1,11 +1,20 @@
 # Stage 1 - the build process
 FROM node:12.10 as build-deps
+
 ARG REACT_APP_API_ENDPOINT
+ENV REACT_APP_API_ENDPOINT="$REACT_APP_API_ENDPOINT"
+
 ENV REACT_APP_PROJECT "webapp"
+
+RUN env
+
 WORKDIR /usr/src/app
+
 COPY package.json package-lock.json ./
 RUN npm install
+
 COPY . ./
+
 RUN npm run build
 
 # Stage 2 - the production environment

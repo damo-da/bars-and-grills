@@ -154,3 +154,5 @@ node_modules/
 tmp
 
 *.env
+
+imagedefinition*.json
