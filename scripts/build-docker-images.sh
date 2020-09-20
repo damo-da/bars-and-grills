@@ -119,9 +119,15 @@ function deploy-webapp() {
   cd ..
 }
 
-deploy-admin-panel
-deploy-webapp
-deploy-api
+# Run processes in parallel
+(deploy-api)&
+pid1="$!"
+(deploy-admin-panel)&
+pid2="$!"
+(deploy-webapp)&
+pid3="$!"
+
+wait $pid1 $pid2 $pid3 || (echo "fail" && exit 1)
 
 echo All done.
 
