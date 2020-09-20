@@ -156,3 +156,4 @@ tmp
 *.env
 
 imagedefinition*.json
+/.idea
