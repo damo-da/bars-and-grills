@@ -8,3 +8,6 @@ phases:
   build:
     commands:
       - ./scripts/build-docker-images.sh
+
+artifacts:
+  files: imagedefinition*.json
