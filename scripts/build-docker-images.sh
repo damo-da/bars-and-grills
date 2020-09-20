@@ -53,9 +53,8 @@ docker push "$ADMIN_PANEL_URL"
 echo "Admin panel complete."
 cd ..
 
-printf '[{"name":"api","imageUri":"%s"}]' "api" $API_URL > imagedefinition-api.json
-printf '[{"name":"admin-panel","imageUri":"%s"}]' "api" $ADMIN_PANEL_URL > imagedefinition-admin-panel.json
-printf '[{"name":"webapp","imageUri":"%s"}]' "api" $WEB_APP_URL > imagedefinition-webapp.json
+printf '[{"name":"api","imageUri":"%s"}]' $API_URL > imagedefinition-api.json
+printf '[{"name":"admin-panel","imageUri":"%s"}]' $ADMIN_PANEL_URL > imagedefinition-admin-panel.json
+printf '[{"name":"webapp","imageUri":"%s"}]' $WEB_APP_URL > imagedefinition-webapp.json
 
 echo All done.
-
