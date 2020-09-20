@@ -8,8 +8,6 @@ import history from 'utils/history';
 import Router from 'webapp/components/Router/Router';
 import theme from 'webapp/styles/theme';
 
-import './App.scss';
-
 function App() {
   return (
     <div className="App">

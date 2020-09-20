@@ -7,19 +7,22 @@ import './index.scss';
 
 const BUILD_TARGETS = [
   {
-    name: 'admin-panel',
-    path: './admin-panel/index',
-  },
-  {
     name: 'webapp',
     path: './webapp/index',
+  },
+  {
+    name: 'admin-panel',
+    path: './admin-panel/index',
   },
 ];
 
 // Determine which entry point to import
 const { path } = BUILD_TARGETS.find(
   ({ name }) => process.env.REACT_APP_PROJECT === name,
-) || {};
+) || BUILD_TARGETS[0];
+
+console.log('build target is', path, process.env);
+
 
 // Import the entry point and render it's default export
 import(`${path}`).then(({ default: BuildTarget }) => {

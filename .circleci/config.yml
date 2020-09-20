@@ -6,3 +6,8 @@ workflows:
     jobs:
       - node/test:
           app-dir: ./app
+  django-tests:
+    jobs:
+      - build:
+          working_directory: ~/barsandgrills
+          docker: circleci/python3.8.4

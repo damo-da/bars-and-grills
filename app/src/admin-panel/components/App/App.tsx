@@ -26,8 +26,6 @@ import {
   UserCreate,
 } from 'admin-panel/resources/user';
 
-import './App.css';
-
 function App() {
   return (
     <Admin

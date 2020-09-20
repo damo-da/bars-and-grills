@@ -36,7 +36,7 @@ async function client(endpoint: string, userConfig?: ApiConfig) {
   try {
     json = data ? JSON.parse(data) : {};
   } catch (e) {
-    return Promise.reject(new Error(`Failed to parse response JSON: ${data}`));
+    return Promise.reject(new Error(`Failed to parse response JSON: ${data.slice(10)}`));
   }
 
   if (response.ok) {

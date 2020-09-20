@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  api:
+    build: ./backend
+    volumes:
+      - ./backend:/code
+    ports:
+      - "8080:80"
+    secrets:
+      - api_env_file
+  webapp:
+    build:
+      context: ./app
+      dockerfile: ./webapp.Dockerfile
+    volumes:
+      - ./app:/usr/src/app
+    ports:
+      - "8081:80"
+  admin-panel:
+    build:
+      context: ./app
+      dockerfile: ./admin-panel.Dockerfile
+    volumes:
+      - ./app:/usr/src/app
+    ports:
+      - "8082:80"
+
+secrets:
+  api_env_file:
+    file: secrets.env
+

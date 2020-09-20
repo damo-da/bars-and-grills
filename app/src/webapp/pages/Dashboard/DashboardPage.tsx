@@ -16,7 +16,11 @@ const DashboardPage = () => {
 
   const getRestaurants = async () => {
     const { data: { results: apiRestaurants } }: ApiResponse<Paginated<Restaurant>> = await api.get('/restaurants');
-    setRestaurants(apiRestaurants);
+    setRestaurants(apiRestaurants.sort((a, b) => {
+      if (a.avg_rating === b.avg_rating) return 0;
+      if (a.avg_rating > b.avg_rating) return -1;
+      return +1;
+    }));
   };
 
   React.useEffect(() => {
