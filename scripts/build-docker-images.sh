@@ -103,7 +103,7 @@ function deploy-webapp() {
   echo "Building webapp"
 
   docker build \
-    -t $ADMIN_PANEL_REPO \
+    -t $WEB_APP_REPO \
     -f webapp.Dockerfile\
     --build-arg REACT_APP_API_ENDPOINT="$API_ENDPOINT" \
     .
