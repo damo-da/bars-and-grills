@@ -70,9 +70,9 @@ function deploy-api() {
 
   echo "API complete."
 
-  printf '[{"name":"api","imageUri":"%s"}]' $API_URL > imagedefinition-api.json
-
   cd ..
+
+  printf '[{"name":"api","imageUri":"%s"}]' $API_URL > imagedefinition-api.json
 }
 
 function deploy-admin-panel() {
@@ -92,9 +92,9 @@ function deploy-admin-panel() {
   docker push "$ADMIN_PANEL_URL"
   echo "Admin panel complete."
 
-  printf '[{"name":"admin-panel","imageUri":"%s"}]' $ADMIN_PANEL_URL > imagedefinition-admin-panel.json
-
   cd ..
+
+  printf '[{"name":"admin-panel","imageUri":"%s"}]' $ADMIN_PANEL_URL > imagedefinition-admin-panel.json
 }
 
 function deploy-webapp() {
@@ -114,9 +114,9 @@ function deploy-webapp() {
   docker push "$WEB_APP_URL"
   echo "Webapp complete."
 
-  printf '[{"name":"webapp","imageUri":"%s"}]' $WEB_APP_URL > imagedefinition-webapp.json
-
   cd ..
+
+  printf '[{"name":"webapp","imageUri":"%s"}]' $WEB_APP_URL > imagedefinition-webapp.json
 }
 
 deploy-api
