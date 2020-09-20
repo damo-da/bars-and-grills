@@ -1,5 +1,6 @@
 # Stage 1 - the build process
 FROM node:12.10 as build-deps
+ARG REACT_APP_API_ENDPOINT
 ENV REACT_APP_PROJECT "webapp"
 WORKDIR /usr/src/app
 COPY package.json package-lock.json ./

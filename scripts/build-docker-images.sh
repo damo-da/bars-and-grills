@@ -2,7 +2,8 @@
 ## Build and push docker images...
 ## variables
 # AWS_ACCOUNT_ID = <id>
-# $AWS_REGION = "us-west-2"
+# AWS_REGION = "us-west-2"
+# API_URL = "https://url.com/testing"
 
 BASE_URL="$AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com"
 API_REPO="barsngrills/api:latest"
@@ -22,6 +23,8 @@ echo "Pushing"
 docker push "$API_URL"
 echo "API complete."
 cd ..
+
+export REACT_APP_API_ENDPOINT=$API_URL
 
 cd app || (echo "Failed to load app. Execute this script from the root directory." && exit 1)
 docker build -t $WEB_APP_REPO -f webapp.Dockerfile .
