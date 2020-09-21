@@ -5,7 +5,7 @@ orbs:
 
 jobs:
   app-test:
-    working_directory: ~/barsandgrills/app
+    working_directory: ~/bng
     executor: node/default
     steps:
       - checkout
@@ -16,7 +16,7 @@ jobs:
       - run: cd app && npm run lint
 
   backend-test:
-    working_directory: ~/barsandgrills
+    working_directory: ~/bng
     docker:
       - image: circleci/python:3.8.5
     steps:
