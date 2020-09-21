@@ -9,12 +9,11 @@ jobs:
     executor: node/default
     steps:
       - checkout
-      - run: pwd
-      - run: ls
       - node/install-packages:
+          app-dir: ./app
           override-ci-command: npm install
-      - run: npm run test
-      - run: npm run lint
+      - run: cd app && npm run test
+      - run: cd app && npm run lint
 
   backend-test:
     working_directory: ~/barsandgrills
