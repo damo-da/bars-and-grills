@@ -10,7 +10,7 @@ jobs:
     steps:
       - checkout
       - run: pwd
-      - run ls
+      - run: ls
       - node/install-packages:
           override-ci-command: npm install
       - run: npm run test
