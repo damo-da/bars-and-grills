@@ -15,13 +15,9 @@ All screenshots are placed in `./screenshots` directory. Select screenshots are 
 ### Webapp
 Responsive layout supporting Mobile, Tablet and Desktop devices.
 
-<img src="./app/screenshots/webapp/restaurant_list_iphone.png" width="300px"> <img src="./app/screenshots/webapp/login_ipad.png" width="400px">  |
-<img src="./app/screenshots/webapp/restaurant_details_desktop.png" width="100%">
+<img src="./app/screenshots/iphone.png" width="300px">
+<img src="./app/screenshots/desktop.png" width="100%">
 
-
-### Admin panel
-![](./app/screenshots/admin-panel/reviews.png)
-![](./app/screenshots/admin-panel/edit_review.png)
 
 ### API
 Screenshot of Swagger definitions:
