@@ -5,10 +5,12 @@ orbs:
 
 jobs:
   app-test:
-    working_directory: ~/barsandgrills
+    working_directory: ~/barsandgrills/app
     executor: node/default
     steps:
       - checkout
+      - run: pwd
+      - run ls
       - node/install-packages:
           override-ci-command: npm install
       - run: npm run test
