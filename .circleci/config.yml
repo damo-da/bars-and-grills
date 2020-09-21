@@ -17,7 +17,7 @@ jobs:
   backend-test:
     working_directory: ~/barsandgrills
     docker:
-      - image: circleci/python3.8.5
+      - image: circleci/python:3.8.5
     steps:
         - checkout
         - run: cd backend
