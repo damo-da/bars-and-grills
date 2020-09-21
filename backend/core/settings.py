@@ -22,7 +22,7 @@ environ.Env.read_env(env_file=path.join(BASE_DIR, '.env'))
 
 env = environ.Env(
     # set casting, default value
-    DEBUG=(bool, False)
+    DEBUG=(bool, False),
 )
 
 
@@ -30,7 +30,7 @@ env = environ.Env(
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env.get_value('SECRET_KEY')
+SECRET_KEY = env.get_value('SECRET_KEY', default='insecuresecret')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -88,11 +88,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
-    'sqlite': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    },
-    'default': env.db(),
+    'default': env.db(default='sqlite://local.db'),
 }
 
 
