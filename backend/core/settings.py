@@ -88,7 +88,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
-    'default': env.db(default='sqlite://local.db'),
+    'default': env.db(default='sqlite:////tmp/bng.db'),
 }
 
 
