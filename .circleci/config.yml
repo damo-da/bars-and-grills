@@ -13,9 +13,7 @@ workflows:
           docker: circleci/python3.8.4
     steps:
       - checkout
-      - run:
-          - command: |
-            cd backend
+      - run: cd backend
       - run:
           command: |
             python3 -m venv venv
