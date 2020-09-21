@@ -4,13 +4,23 @@ orbs:
   node: circleci/node@4.0.0
 
 jobs:
-  django-test:
+  app-test:
+    working_directory: ~/barsandgrills
+    executor: node/default
+    steps:
+      - checkout
+      - node/install-packages:
+          override-ci-command: npm install
+      - run: npm run test
+      - run: npm run lint
+
+  backend-test:
     working_directory: ~/barsandgrills
     docker:
-      - image: circleci/python3.8.4
+      - image: circleci/python3.8.5
     steps:
         - checkout
-        - run: "cd backend"
+        - run: cd backend
         - run: |
             python3 -m venv venv
             . venv/bin/activate
@@ -25,7 +35,5 @@ jobs:
 workflows:
   tests:
     jobs:
-      - django-test
-      - node/test:
-            app-dir: ./app
-
+      - backend-test
+      - app-test
