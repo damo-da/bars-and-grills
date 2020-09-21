@@ -14,7 +14,7 @@ workflows:
     steps:
       - checkout
       - run:
-          - cmd: |
+          - command: |
             cd backend
       - run:
           command: |
