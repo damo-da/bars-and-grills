@@ -9,10 +9,10 @@ A sample web solution which allows users to review restaurants, featuring:
 * Amazon Web Services hosting components on Elastic Container Service
 * Continuous Integration (CI) using CircleCI and Continous Deployment (CD) using AWS CodePipeline
 
-Project homepage: [bng.damodar.dev](bng.damodar.dev)\
-Frontend: [app.bng.damodar.dev](app.bng.damodar.dev)\
-Admin-Panel: [admin.bng.damodar.dev](admin.bng.damodar.dev)\
-Django API: [api.bng.damodar.dev](api.bng.damodar.dev) ([Swagger specs](api.bng.damodar.dev/swagger))
+Project homepage: [bng.damodar.dev](https://bng.damodar.dev)\
+Frontend: [app.bng.damodar.dev](https://app.bng.damodar.dev)\
+Admin-Panel: [admin.bng.damodar.dev](https://admin.bng.damodar.dev)\
+Django API: [api.bng.damodar.dev](https://api.bng.damodar.dev) ([Swagger specs](api.bng.damodar.dev/swagger))
 
 <img src="./app/screenshots/iphone.png" height="400px">
 <img src="./app/screenshots/desktop.png" width="100%">
@@ -35,8 +35,9 @@ Django API: [api.bng.damodar.dev](api.bng.damodar.dev) ([Swagger specs](api.bng.
 * CodePipeline to:
   * Automatically trigger build on pushing source code in CodeCommit
   * Build docker containers for webapp, admin-panel and api and push them to ECR
-  * All resources running on a private cloud (VPC)
-  * Route53 hosted at zone `bng.damodar.dev`
+* All resources running on a private cloud (VPC)
+* Route53 hosted at zone `bng.damodar.dev`
+* Certificates managed through ACM
 
 ## License
 Free and open source software (FOSS) licensed using the [MIT License](./LICENSE.txt).
