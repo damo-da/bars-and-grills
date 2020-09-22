@@ -12,7 +12,7 @@ A sample web solution which allows users to review restaurants, featuring:
 Project homepage: [bng.damodar.dev](https://bng.damodar.dev)\
 Frontend: [app.bng.damodar.dev](https://app.bng.damodar.dev)\
 Admin-Panel: [admin.bng.damodar.dev](https://admin.bng.damodar.dev)\
-Django API: [api.bng.damodar.dev](https://api.bng.damodar.dev) ([Swagger specs](https://api.bng.damodar.dev/api/swagger))
+Django API: [api.bng.damodar.dev](https://api.bng.damodar.dev) ([Swagger specs](https://api.bng.damodar.dev/api/swagger))\
 Source Code: on [GitHub](https://github.com/damo-da/bars-and-grills/)
 
 <div style="display: flex; flex-wrap: wrap;">
