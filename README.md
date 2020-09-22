@@ -14,9 +14,9 @@ Frontend: [app.bng.damodar.dev](https://app.bng.damodar.dev)\
 Admin-Panel: [admin.bng.damodar.dev](https://admin.bng.damodar.dev)\
 Django API: [api.bng.damodar.dev](https://api.bng.damodar.dev) ([Swagger specs](https://api.bng.damodar.dev/api/swagger))
 
-<div style="display: grid; grid-template-columns: 300px 1fr;">
-<img src="./app/screenshots/iphone.png">
-<img src="./app/screenshots/desktop.png">
+<div style="display: flex; flex-wrap: wrap;">
+ <div style="flex: 1 1 300px;"><img src="./app/screenshots/iphone.png" width="100%" height="100%" /></div>
+ <div style="flex: 1 1 500px;"><img src="./app/screenshots/desktop.png" width="100%" height="100%" /></div>
 </div>
 
 
