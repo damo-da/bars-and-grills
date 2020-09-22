@@ -26,7 +26,7 @@ Source Code: on [GitHub](https://github.com/damo-da/bars-and-grills/)
 * Responsive Material UI with pixel-perfect designs
 * Strong typing using TypeScript and `eslint`
 * React Hooks
-* The two projects hosted as isolated docker containers in ECS
+* The two projects hosted as isolated docker containers in ECS, both running using nginx
 
 ## Django backend
 * Role based authentication using JWT for stateless paginated RESTful API calls
