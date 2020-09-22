@@ -27,7 +27,7 @@ Django API: [api.bng.damodar.dev](api.bng.damodar.dev) ([Swagger specs](api.bng.
 
 ## Django backend
 * Role based authentication using JWT for stateless paginated RESTful API calls
-* [Swagger specifications] (api.bng.damodar.dev/swagger)
+* [Swagger specifications](api.bng.damodar.dev/swagger)
 * [Postman routes](https://www.getpostman.com/collections/ddc8f21db248ec42dd03)
 
 ## AWS Cloud Architecture
