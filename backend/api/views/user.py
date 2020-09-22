@@ -32,3 +32,4 @@ class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
 
     permission_classes = [Or(AdminUserRead, AdminUserWrite)]
+    http_method_names = ['get', 'post', 'head']
