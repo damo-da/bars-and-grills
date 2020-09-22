@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {
-  List, Datagrid, Edit, Create, SimpleForm, TextField, EditButton, TextInput, DeleteButton,
+  List, Datagrid, Edit, Create, SimpleForm, TextField, TextInput,
   PasswordInput,
 } from 'react-admin';
 import MuiUserIcon from '@material-ui/icons/Person';
@@ -8,13 +8,11 @@ import MuiUserIcon from '@material-ui/icons/Person';
 export const UserIcon = MuiUserIcon;
 
 export const UserList = (props: any) => (
-  <List {...props}>
+  <List bulkActionButtons={false} {...props}>
     <Datagrid>
       <TextField source="id" />
       <TextField source="username" />
 
-      <EditButton />
-      <DeleteButton />
     </Datagrid>
   </List>
 );

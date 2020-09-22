@@ -51,7 +51,6 @@ function App() {
       <Resource
         name="users"
         list={UserList}
-        edit={UserEdit}
         create={UserCreate}
         icon={UserIcon}
       />
