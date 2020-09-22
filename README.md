@@ -2,42 +2,44 @@
 
 [![](https://circleci.com/gh/damo-da/bars-and-grills.svg?style=svg)](<https://circleci.com/gh/damo-da/bars-and-grills>)
 
-This app will show restaurants for the user and allow them to rate/review the restaurants.
+A sample web solution which allows users to review restaurants, featuring:
 
-It contains the following components:
-* Django REST API (located in `backend/`)
-* React "webapp" (located in `app/src/webapp`)
-* React-Admin admin panel (located in `app/src/admin-panel`)
+* A multi-project React app for a responsive mobile-first frontend ("webapp"), and an admin-panel (React-Admin)
+* A Python/Django RESTful API running using a postgres database (on AWS RDS)
+* Amazon Web Services hosting components on Elastic Container Service
+* Continuous Integration (CI) using CircleCI and Continous Deployment (CD) using AWS CodePipeline
 
+Project homepage: [bng.damodar.dev](bng.damodar.dev)\
+Frontend: [app.bng.damodar.dev](app.bng.damodar.dev)\
+Admin-Panel: [admin.bng.damodar.dev](admin.bng.damodar.dev)\
+Django API: [api.bng.damodar.dev](api.bng.damodar.dev) ([Swagger specs](api.bng.damodar.dev/swagger))
 
-## Screenshots
-All screenshots are placed in `./screenshots` directory. Select screenshots are shown below:
-### Webapp
-Responsive layout supporting Mobile, Tablet and Desktop devices.
-
-<img src="./app/screenshots/iphone.png" width="300px">
+<img src="./app/screenshots/iphone.png" height="400px">
 <img src="./app/screenshots/desktop.png" width="100%">
 
 
-### API
-Screenshot of Swagger definitions:
-![](./backend/screenshots/swagger.png)
-![](./backend/screenshots/swagger2.png)
-
-## Features
-* Responsive, pixel-perfect Material UI design
-* CRUD API with Pagination
-* Role-based authentications using JWT
+## React projects
+* A multi-project create-react-app for mobile-first frontend ("webapp"), and an admin-panel (React-Admin)
+* Responsive Material UI with pixel-perfect designs
+* Strong typing using TypeScript and `eslint`
 * React Hooks
-* TypeScript types
-* Swagger API
-* Unit and e2e tests
-* Django unit tests
+* The two projects hosted as isolated docker containers in ECS
+
+## Django backend
+* Role based authentication using JWT for stateless paginated RESTful API calls
+* [Swagger specifications] (api.bng.damodar.dev/swagger)
 * [Postman routes](https://www.getpostman.com/collections/ddc8f21db248ec42dd03)
 
+## AWS Cloud Architecture
+* Partially set up using Terraform (will convert into full setup soon)
+* CodePipeline to:
+  * Automatically trigger build on pushing source code in CodeCommit
+  * Build docker containers for webapp, admin-panel and api and push them to ECR
+  * All resources running on a private cloud (VPC)
+  * Route53 hosted at zone `bng.damodar.dev`
 
 ## License
-See [LICENSE](./LICENSE) file.
+Free and open source software (FOSS) licensed using the [MIT License](./LICENSE.txt).
 
 ## Contributors
-This project was setup by Damodar Dahal <hi@damodar.dev>. Thank you for browsing!
+This project was created by Damodar Dahal <hi@damodar.dev>. All pull requests and issues are welcome.
