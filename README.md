@@ -13,6 +13,7 @@ Project homepage: [bng.damodar.dev](https://bng.damodar.dev)\
 Frontend: [app.bng.damodar.dev](https://app.bng.damodar.dev)\
 Admin-Panel: [admin.bng.damodar.dev](https://admin.bng.damodar.dev)\
 Django API: [api.bng.damodar.dev](https://api.bng.damodar.dev) ([Swagger specs](https://api.bng.damodar.dev/api/swagger))
+Source Code: on [GitHub](https://github.com/damo-da/bars-and-grills/)
 
 <div style="display: flex; flex-wrap: wrap;">
  <div style="flex: 1 1 300px;margin-top: auto;margin-bottom: auto;margin-right: 1em;"><img src="./app/screenshots/iphone.png" width="100%" style="max-width: 400px;" /></div>
