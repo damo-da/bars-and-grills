@@ -16,6 +16,9 @@ const BUILD_TARGETS = [
   },
 ];
 
+// eslint-disable-next-line no-console
+console.log(process.env);
+
 // Determine which entry point to import
 const { path } = BUILD_TARGETS.find(
   ({ name }) => process.env.REACT_APP_PROJECT === name,

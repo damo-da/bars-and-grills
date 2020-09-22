@@ -13,6 +13,8 @@ services:
     build:
       context: ./app
       dockerfile: ./webapp.Dockerfile
+    environment:
+      REACT_APP_API_ENDPOINT: "https://api.bng.damodar.dev/api"
     volumes:
       - ./app:/usr/src/app
     ports:
@@ -21,6 +23,8 @@ services:
     build:
       context: ./app
       dockerfile: ./admin-panel.Dockerfile
+    environment:
+      REACT_APP_API_ENDPOINT: "https://api.bng.damodar.dev/api"
     volumes:
       - ./app:/usr/src/app
     ports:
