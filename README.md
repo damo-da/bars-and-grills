@@ -11,13 +11,13 @@ A sample web solution which allows users to review restaurants, featuring:
 
 Project homepage: [bng.damodar.dev](https://bng.damodar.dev)\
 Frontend: [app.bng.damodar.dev](https://app.bng.damodar.dev)\
-Admin-Panel: [admin.bng.damodar.dev](https://admin.bng.damodar.dev)\
-Django API: [api.bng.damodar.dev](https://api.bng.damodar.dev) ([Swagger specs](https://api.bng.damodar.dev/api/swagger))
+Admin-Panel: [admin.bng.damodar.dev](https://admin.bng.damodar.dev) (username: `admin`, password: `i_like_bars_and_i_cannot_lie`)\
+Django API: [api.bng.damodar.dev](https://api.bng.damodar.dev) ([Swagger specs](https://api.bng.damodar.dev/api/swagger))\
 Source Code: on [GitHub](https://github.com/damo-da/bars-and-grills/)
 
 <div style="display: flex; flex-wrap: wrap;">
- <div style="flex: 1 1 300px;margin-top: auto;margin-bottom: auto;margin-right: 1em;"><img src="./app/screenshots/iphone.png" width="100%" style="max-width: 400px;" /></div>
- <div style="flex: 1 1 500px;margin-top: auto;margin-bottom: auto;margin-left: 1em;"><img src="./app/screenshots/desktop.png" width="100%" /></div>
+ <div style="flex: 1 1 300px;margin-top: auto;margin-bottom: auto;margin-right: 1em;"><img src="./app/screenshots/iphone.png" style="width: 100%; max-width: 400px;" /></div>
+ <div style="flex: 1 1 500px;margin-top: auto;margin-bottom: auto;margin-left: 1em;"><img src="./app/screenshots/desktop.png" style="width: 100%;" /></div>
 </div>
 
 
@@ -30,16 +30,19 @@ Source Code: on [GitHub](https://github.com/damo-da/bars-and-grills/)
 
 ## Django backend
 * Role based authentication using JWT for stateless paginated RESTful API calls
+* Hosted as isolated docker container in ECS with auto-scaling
+* Postgres database
 * [Swagger specifications](https://api.bng.damodar.dev/api/swagger)
 * [Postman routes](https://www.getpostman.com/collections/ddc8f21db248ec42dd03)
 
 ## AWS Cloud Architecture
-* Partially set up using Terraform (will convert into full setup soon)
+* Partially set up using Terraform (intending to migrate all config to Terraform)
 * CodePipeline to:
   * Automatically trigger build on pushing source code in CodeCommit
   * Build docker containers for webapp, admin-panel and api and push them to ECR
-* All resources running on a private cloud (VPC)
-* Route53 hosted at zone `bng.damodar.dev`
+* Elastic Container Service cluster (like Kubernetes)
+* All resources running on a private cloud (VPC) located in `us-west-2` (Oregon)
+* Route53 domain zone for `bng.damodar.dev`
 * Certificates managed through ACM
 
 ## License
