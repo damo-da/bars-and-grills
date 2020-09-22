@@ -22,7 +22,6 @@ import {
 import {
   UserIcon,
   UserList,
-  UserEdit,
   UserCreate,
 } from 'admin-panel/resources/user';
 
