@@ -36,6 +36,8 @@ Source Code: on [GitHub](https://github.com/damo-da/bars-and-grills/)
 * [Postman routes](https://www.getpostman.com/collections/ddc8f21db248ec42dd03)
 
 ## AWS Cloud Architecture
+![BNG AWS Cloud Architecture diagram](./screenshots/Cloud_design_diagram.png)
+
 * Partially set up using Terraform (intending to migrate all config to Terraform)
 * CodePipeline to:
   * Automatically trigger build on pushing source code in CodeCommit
