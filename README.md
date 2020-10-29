@@ -16,7 +16,7 @@ Django API: [api.bng.damodar.dev](https://api.bng.damodar.dev) ([Swagger specs](
 Source Code: on [GitHub](https://github.com/damo-da/bars-and-grills/)
 
 <div style="display: flex; flex-wrap: wrap;">
- <div style="flex: 1 1 300px;margin-top: auto;margin-bottom: auto;margin-right: 0.5em;"><img src="./app/screenshots/iphone.png" style="width: 100%; max-width: 300px;" /></div>
+ <div style="flex: 1 1 300px;margin-top: auto;margin-bottom: auto;margin-right: 0.5em;"><img src="./app/screenshots/iphone.png" style="width: 100%; max-width: 300px; max-height: 400px" /></div>
  <div style="flex: 1 1 600px;margin-top: auto;margin-bottom: auto;margin-left: 0.5em;"><img src="./app/screenshots/desktop.png" style="width: 100%;" /></div>
 </div>
 
