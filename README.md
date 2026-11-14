@@ -9,10 +9,7 @@ A sample web solution which allows users to review restaurants, featuring:
 * Amazon Web Services hosting components on Elastic Container Service
 * Continuous Integration (CI) using CircleCI and Continous Deployment (CD) using AWS CodePipeline
 
-Project homepage: [bng.damodar.dev](https://bng.damodar.dev)\
-Frontend: [app.bng.damodar.dev](https://app.bng.damodar.dev)\
-Admin-Panel: [admin.bng.damodar.dev](https://admin.bng.damodar.dev) (username: `admin`, password: `i_like_bars_and_i_cannot_lie`)\
-Django API: [api.bng.damodar.dev](https://api.bng.damodar.dev) ([Swagger specs](https://api.bng.damodar.dev/api/swagger))\
+The demo deployment (formerly at bng.damodar.dev) has been retired. The damodar.dev domain no longer belongs to the author, so its links have been removed.\
 Source Code: on [GitHub](https://github.com/damo-da/bars-and-grills/)
 
 <div style="display: flex; flex-wrap: wrap;">
@@ -51,4 +48,4 @@ Source Code: on [GitHub](https://github.com/damo-da/bars-and-grills/)
 Free and open source software (FOSS) licensed using the [MIT License](./LICENSE.txt).
 
 ## Contributors
-This project was created by Damodar Dahal <hi@damodar.dev>. All pull requests and issues are welcome.
+This project was created by [Damodar Dahal](https://damodardahal.com). All pull requests and issues are welcome.
